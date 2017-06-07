@@ -1,0 +1,1259 @@
+<style>
+	.header__top{
+		width:100%;
+		background: #fafafa none repeat scroll 0 0;
+	    border-bottom: 1px solid #e6e6e6;
+	    font: 12px/34px arial;
+	    height: 34px;
+	    color: #333;
+	    position: relative;
+	}
+	.header__top-list ul li{
+		float: left;
+		margin: 0 10px 0 0;
+    	width: 65px;
+	}
+	.header__top-list ul li a{
+		color: #666;
+	}
+	.header__top-list ul li a:hover{
+		color: red;
+	}
+	.header__top-list ul li.icon{
+		width: 75px;
+		padding-right: 10px;
+	}
+	.header__top-list ul li.icon a:before{
+		content: '≡';
+		display: inline-block;
+		padding-right: 3px;
+	}
+	.header__top-list ul li.icon a:after{
+		display: inline-block;
+		content: '⏷';
+		padding-left: 3px;
+	}
+	.header__top-list ul li.icon a:hover{
+		color: #666;
+		text-decoration: none;
+	}
+	.header__top-list ul li.icon a:hover:after{
+		display: inline-block;
+		content: '⏶';
+		padding-left: 3px;
+	}
+	.header__top-login, .header__top-reg, .header__top-member {
+		float: right;
+		width: 35px;
+		height: 34px;
+		line-height: 34px;
+		cursor: pointer;
+	}
+	.header__top-login:hover, .header__top-reg:hover, .header__top-member:hover{
+		color: #777;
+	}
+	.header__top-login em{
+		cursor: pointer;
+	}
+	.member{
+		background: url("../../static/img/arrow.png") no-repeat 55px center;
+		width: 70px;
+		position: relative;
+	}
+	.member:hover{
+		background: url("../../static/img/arrow2.png") no-repeat 55px center;
+	}
+	.member em{
+		float: right;
+		padding-right: 22px;
+	}
+	.member .member_ul{
+		position: absolute;
+		top: 34px;
+		left: -18px;
+		background: #FAFAFA;
+		width: 100px;
+		height: 0px;
+		opacity: 0;
+		border: 1px solid #999999;
+		border-top: none;
+		padding: 10px 0 5px 0;
+		overflow: hidden;
+		display: none;
+		z-index: 997;
+	}
+	.member_ul li{
+		height: 25px;
+		line-height: 25px;
+		text-indent: 25px;
+		letter-spacing: 1px;
+	}
+	.member_ul li a{
+		display: block;
+		text-decoration: none;
+		color: #666;
+		background: url("../../static/img/arrow3.png") no-repeat -2px -3px;
+		background-size: 32px 32px;
+	}
+	.member_ul li a:hover{
+		background:#87CEFF url("../../static/img/arrow4.png") no-repeat -2px -3px;
+		background-size: 32px 32px;
+		color: #333333;
+	}
+	
+	.screen{
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #000000;
+		z-index: 998;
+		opacity: 0.3;
+		display: block;
+		width: 1000px;
+		height: 1000px;
+		display: none;
+	}
+	
+	#reg{
+		width: 600px;
+		height: 550px;
+		border: 1px solid #CCCCCC;
+		position: absolute;
+		z-index: 999;
+		background: #FFFFFF;
+		left: 50%;
+		top: 0;
+		display: none;
+		margin-left: -300px;
+		opacity: 0;
+	}
+	#reg h2{
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 14px;
+		letter-spacing: 2px;
+		color: #666666;
+		background: url("../../static/img/login_header.png") repeat-x;
+		padding: 0;
+		border-bottom: 1px solid #CCCCCC;
+		margin: 0 0 20px 0;
+		cursor: move;
+		font-family: "microsoft yahei", arial;
+	}
+	#reg h2 a{
+		position: absolute;
+		width: 21px;
+		height: 21px;
+		top: 10px;
+		right: 12px;
+		background: url("../../static/img/close.png") no-repeat 0 1px;
+		cursor: pointer;
+		text-indent: -999em;
+	}
+	#reg h2 a:hover{
+		background-position: 0 -19px;
+	}
+	#reg dl{
+		font-size: 14px;
+		color: #666666;
+		margin: 20px;
+		padding: 0 0 0 10px;
+		position: relative;
+	}
+	#reg dl dd{
+		height: 30px;
+		padding: 5px 0;
+		font-family: "microsoft yahei", arial;
+	}
+	#reg input.text, #reg textarea{
+		text-indent: 4px;
+	}
+	#reg input.text, #reg dd select{
+		width: 200px;
+		height: 25px;
+		border: 1px solid #CCCCCC;
+		background: #FFFFFF;
+		font-size: 14px;
+		color: #666666;
+	}
+	#reg textarea{
+		width: 360px;
+		height: 100px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+	}
+	#reg .birthday select{
+		width: 70px;
+	}
+	#reg dl dd.ps{
+		display: block;
+		padding: 0 0 0 300px;
+	}
+	#reg dl dd.ps .clearmore{
+		cursor: pointer;
+		color: #06f;
+	}
+	#reg dl dd.ps strong.num{
+		padding: 0 2px;
+	}
+	#reg dd.area{
+		height: 105px;
+	}
+	#reg .psname{
+		vertical-align: 80px;
+	}
+	#reg .submit{
+		display: inline-block;
+		width: 120px;
+		height: 40px;
+		border: 0;
+		color: #FFFFFF;
+		background: #0381cf;
+		box-shadow: 1px 1px 1px #888888;
+		border-radius: 4px;
+		font-size: 20px;
+		line-height: 40px;
+		text-align: center;
+		letter-spacing: 6px;
+		text-decoration: none;
+		margin: -10px 0 0 147px;
+	}
+	#reg .submit:hover{
+		background: #006bad;
+		color: #FCFCFC;
+	}
+	#reg span.info, #reg span.error, #reg span.succ{
+		position: absolute;
+		display: block;
+		font-size: 12px;
+		color: #333333;
+		width: 165px;
+		height: 32px;
+		line-height: 32px;
+		padding: 0 0 0 35px;
+		letter-spacing: 1px;
+		display: none;
+	}
+	#reg span.info{
+		background: url("../../static/img/reg_info.png") no-repeat;
+	}
+	#reg span.info_user{
+		height: 43px;
+		line-height: 18px;
+		padding-top: 7px;
+		background: url("../../static/img/reg_info2.png") no-repeat;
+		top: 3px;
+		left: 295px;
+	}
+	#reg span.error{
+		background: url("../../static/img/reg_error.png") no-repeat;
+	}
+	#reg span.error_user{
+		top: 3px;
+		left: 295px;
+	}
+	#reg span.succ{
+		height: 14px;
+		line-height: 14px;
+		background: url("../../static/img/reg_succ.png") no-repeat;
+		padding: 0 0 0 20px;
+		color: green;
+	}
+	#reg span.succ_user{
+		top: 12px;
+		left: 295px;
+	}
+	#reg span.loading{
+		position: absolute;
+		top: 10px;
+		left: 300px;
+		font-size: 12px;
+		background: url("../../static/img/loading2.gif") no-repeat;
+		text-indent: 22px;
+		display: none;
+	}
+	#reg span.info_pass{
+		width: 244px;
+		height: 102px;
+		padding: 4px 0 0 16px;
+		background: url("../../static/img/reg_info3.png") no-repeat;
+		top: 5px;
+		left: 295px;
+		letter-spacing: 0;
+	}
+	#reg span.info_pass p{
+		height: 25px;
+		line-height: 25px;
+		color: #666666;
+	}
+	#reg span.info_pass p strong.s{
+		color: #CCCCCC;
+	}
+	#reg span.error_pass{
+		top: 43px;
+		left: 295px;
+	}
+	#reg span.succ_pass{
+		top: 52px;
+		left: 295px;
+	}
+	#reg span.info_notpass{
+		top: 83px;
+		left: 295px;
+	}
+	#reg span.error_notpass{
+		top: 83px;
+		left: 295px;
+	}
+	#reg span.succ_notpass{
+		top: 92px;
+		left: 295px;
+	}
+	#reg span.info_email{
+		top: 203px;
+		left: 295px;
+	}
+	#reg span.error_email{
+		top: 203px;
+		left: 295px;
+	}
+	#reg span.succ_email{
+		top: 212px;
+		left: 295px;
+	}
+	#reg dl dd ul.all_email{
+		width: 180px;
+		height: 130px;
+		background: #FFFFFF;
+		padding: 5px 10px;
+		position: absolute;
+		top: 231px;
+		left: 78px;
+		border: 1px solid #CCCCCC;
+		display: none;
+	}
+	#reg dl dd ul.all_email li{
+		height: 25px;
+		line-height: 25px;
+		border-bottom: 1px solid #e5edf2 ;
+		padding: 0 5px;
+		cursor: pointer;
+		background: none;
+		color: #666666;
+	}
+	#reg dl dd ul.all_email li:hover{
+		background: #E5EDF2;
+		color: #CC00FF;
+	}
+	#reg dl dd span.error_birthday{
+		top: 241px;
+		left: 310px;
+	}
+	
+	#loading, #success {
+		position:absolute;
+		width:200px;
+		height:40px;
+		background:url("../../static/img/login_header.png");
+		border-bottom:1px solid #ccc;
+		border-right:1px solid #ccc;
+		z-index:10000;
+		display:none;
+	}
+	#loading p {
+		height:40px;
+		line-height:40px;
+		font-size:14px;
+		color:#666;
+		font-weight:bold;
+		background:url("../../static/img/loading3.gif") no-repeat 20px center;
+		text-indent:50px;
+	}
+
+	#success p {
+		height:40px;
+		line-height:40px;
+		font-size:14px;
+		color:#666;
+		font-weight:bold;
+		background:url("../../static/img/success.gif") no-repeat 20px center;
+		text-indent:50px;
+	}
+	
+	#login{
+		width: 350px;
+		height: 250px;
+		border: 1px solid #CCCCCC;
+		position: absolute;
+		z-index: 999;
+		background: #FFFFFF;
+		left: 50%;
+		top: 200px;
+		margin-left: -175px;
+		display: none;
+		/*opacity: 0;*/
+	}
+	#login h2{
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 14px;
+		letter-spacing: 2px;
+		color: #666666;
+		background: url("../../static/img/login_header.png") repeat-x;
+		margin: 0;
+		padding: 0;
+		border-bottom: 1px solid #CCCCCC;
+		cursor: move;
+		font-family: "microsoft yahei", arial;
+		margin-bottom: 15px;
+	}
+	#login h2 a{
+		position: absolute;
+		width: 21px;
+		height: 21px;
+		top: 10px;
+		right: 12px;
+		background: url("../../static/img/close.png") no-repeat 0 1px;
+		cursor: pointer;
+		text-indent: -999em;
+	}
+	#login h2 a:hover{
+		background-position: 0 -19px;
+	}
+	#login div.user, #login div.pass, #login div.idenCode{
+		font-size: 14px;
+		color: #666666;
+		padding: 5px 0;
+		/*text-align: center;*/
+	}
+	#login input.text{
+		width: 200px;
+		height: 25px;
+		border: 1px solid #CCCCCC;
+		background: #FFFFFF;
+		font-size: 14px;
+	}
+	#login .button{
+		text-align: center;
+		padding: 15px 0 10px 0;
+	}
+	#login .button a{
+		width: 107px;
+		height: 30px;
+		display: inline-block;
+		text-decoration: none;
+		color: #FFFFFF;
+		border: 0;
+		background: #0381cf;
+		box-shadow: 1px 1px 1px #888888;
+		border-radius: 4px;
+		font-size: 18px;
+		line-height: 30px;
+		letter-spacing: 6px;
+	}
+	#login .button a:hover{
+		background: #006bad;
+		color: #FCFCFC;
+	}
+	#login .other{
+		text-align: right;
+		padding: 5px 10px;
+		color: #666666;
+	}
+	
+	/* 登录验证码  */
+	.idenCode input{
+		height: 30px;
+		/*width: 80px;*/
+	}
+	#login span.l{
+		display: inline-block;
+		width: 80px;
+		text-align: right;
+	}
+	#login span.r input{
+		box-sizing: border-box;
+		padding: 3px 5px;
+	}
+	#login span.r input.idencode{
+		width: 100px;
+		margin-right: 10px;
+	}
+	#code{
+		width:80px;
+		font-size:20px;
+		font-family:Arial; 
+		font-style:italic; 
+		font-weight:bold; 
+		border:0; 
+		letter-spacing:2px; 
+		color:blue; 
+		vertical-align: top;
+	}
+</style>
+<section>
+	<div class="header__top">
+		<div class="content-center">
+			<div class="header__top-list">
+				<ul>
+					<li><a href="/">手机资讯</a></li>
+					<li class="icon"><a href="javascript:">网站导航</a></li>
+					<li><a href="javascript:">加入收藏</a></li>
+					<li><a href="javascript:">广告联盟</a></li>
+				</ul>
+			</div>
+			<div class="header__top-member member">
+				<em>个人中心</em>
+				<ul class="member_ul">
+					<li><a class="dispatch" href="javascript:;">发文</a></li>
+					<li><a class="quit" href="javascript:;">退出</a></li>
+				</ul>
+			</div>
+			<div class="header__top-reg reg">注册</div>
+			<div class="header__top-login login">登录</div>
+		</div>
+		<div class="screen"></div>
+	</div>
+	
+	<div id="reg">
+		<h2>会员注册<a class="closereg" href="javascript:void(0);" title="关闭"></a></h2>
+		<form>
+			<dl>
+				<dd>
+					用户名称 : 
+					<input type="text" name="user" class="text">
+					<span class="info info_user">请输入用户名，2~20位，由字母、数字和下划线组成！</span>
+					<span class="error error_user">输入不合法，请重新输入！</span>
+					<span class="succ succ_user">可用</span>
+					<span class="loading">正在检测用户名...</span>
+				</dd>
+				<dd>
+					密　　码 : 
+					<input type="password" name="pass" class="text">
+					<span class="info info_pass"">
+						<p>
+							安全级别：
+							<strong class="s s1">■</strong>
+							<strong class="s s2">■</strong>
+							<strong class="s s3">■</strong>
+							<strong class="s s4"></strong>
+						</p>
+						<p>
+							<strong class="q1">○</strong>
+							 6-20 个字符
+						</p>
+						<p>
+							<strong class="q2">○</strong>
+							  只能包含大小写字母、数字和非空格字符
+						</p>
+						<p>
+							<strong class="q3">○</strong>
+							  大、小写字母、数字、非空字符，2种以上
+						</p>
+					</span>
+					<span class="error error_pass">输入不合法，请重新输入！</span>
+					<span class="succ succ_pass">可用</span>
+				</dd>
+				
+				<dd>
+					密码确认 : 
+					<input type="password" name="notpass" class="text">
+					<span class="info info_notpass">请再一次输入密码！</span>
+					<span class="error error_notpass">密码不一致，请重新输入！</span>
+					<span class="succ succ_notpass">可用</span>
+				</dd>
+				<dd>
+					<span>提　　问 : </span>
+					<select name="ques">
+						<option value="0">- - - - 请选择 - - - -</option>
+						<option value="1">- - 您最喜欢吃的菜</option>
+						<option value="2">- - 您的狗狗的名字</option>
+						<option value="3">- - 您的出生地</option>
+						<option value="4">- - 您最喜欢的明星</option>
+					</select>
+				</dd>
+				<dd>
+					回　　答 : 
+					<input type="text" name="ans" class="text">
+				</dd>
+				<dd>
+					电子邮件 : 
+					<input type="text" name="email" class="text" autocomplete="off">
+					<span class="info info_email">请输入电子邮件！</span>
+					<span class="error error_email">邮件不合法，请重新输入！</span>
+					<span class="succ succ_email">可用</span>
+					<ul class="all_email">
+						<li><span></span>@qq.com</li>
+						<li><span></span>@163.com</li>
+						<li><span></span>@sohu.com</li>
+						<li><span></span>@sina.com.cn</li>
+						<li><span></span>@gmail.com</li>
+					</ul>
+				</dd>
+				<dd class="birthday">
+					<span>生　　日 : </span>
+					<select name="year">
+						<option value="0">- 年 -</option>
+					</select>
+					<select name="month">
+						<option value="0">- 月 -</option>
+					</select>
+					<select name="day">
+						<option value="0">- 日 -</option>
+					</select>
+					<span class="error error_birthday">尚未全部选择，请选择！</span>
+				</dd>
+				<dd class="area">
+					<span class="psname">备　　注 : </span>
+					<textarea name="ps"></textarea>
+				</dd>
+				<dd class="ps">
+					还可以输入<strong class="num">200</strong>字
+				</dd>
+				<dd class="ps" style="display: none;">
+					已超过<strong class="num"></strong>字
+					<span class="clearmore">清尾</span>
+				</dd>
+				<dd>
+					<a class="submit" href="javascript:;">注册</a>
+				</dd>
+			</dl>
+		</form>
+	</div>
+	<div id="loading"><p>加载中</p></div>
+	<div id="success"><p>成功</p></div>
+	
+	<div id="login">
+		<h2>网站登录<a class="closelogin" href="javascript:void(0);" title="关闭"></a></h2>
+		<form name="login">
+			<div class="user">
+				<span class="l">帐 号：</span>
+				<span class="r"><input type="text" name="user" class="text"></span>
+			</div>
+			<div class="pass">
+				<span class="l">密 码：</span>
+				<span class="r"><input type="password" name="pass" class="text"></span>
+			</div>
+			<div class="idenCode">
+				<span class="l">验证码：</span>
+				<span class="r"><input class="idencode" name="icode" type="text" /><input class="code" id="code" type="button" /></span>
+			</div>
+			<div class="button">
+				<a class="btn_login" href="javascript:;">登录</a>
+			</div>
+			<div class="other">注册新用户 | 忘记密码？</div>
+		</form>
+	</div>
+</section>
+<script src="../../static/script/common.js"></script>
+<script>
+	$(function(){
+		
+		//	个人中心
+		if( !!localStorage.getItem('user') ){
+			$('.reg').hide();
+			$('.login').hide();
+			$('.member em').html( localStorage.getItem('user') );
+			$('.dispatch').attr('href', '/handAdd');
+		}
+		$('.member').hover(function(){
+			$('.member_ul').stop(true).show().animate({
+				height: '50px',
+				opacity: '1',
+			}, 500, 'swing')
+		},function(){
+			$('.member_ul').stop(true).animate({
+				height: '0px',
+				opacity: '0',
+			}, 500, 'swing')
+		})
+		
+		//	退出个人中心
+		$('.member .quit').click(function(){
+			$('.reg').show();
+			$('.login').show();
+			$('.member em').html( '个人中心' );
+			localStorage.removeItem('user');
+			$('.dispatch').attr('href', 'javascript:;');
+		})
+		
+		//	注册
+		$('.reg').click(function(){
+			$('.screen').css({
+				'width': $(document).width() + 'px',
+				'height': $(document).height() + 'px',
+			})
+			$('#reg').animate({
+				opacity:'1',
+			}).slideDown('fast', 'linear');
+			$('.screen').animate({
+				opacity: '0.3'
+			}).slideDown('fast', 'swing');
+		})
+		
+		//	登录
+		$('.login').click(function(){
+			$('.screen').css({
+				'width': $(document).width() + 'px',
+				'height': $(document).height() + 'px',
+			})
+			$('#login').animate({
+				opacity:'1',
+			}).slideDown('fast', 'linear');
+			$('.screen').animate({
+				opacity: '0.3'
+			}).slideDown('fast', 'swing');
+		})
+		
+		//	关闭注册窗口
+		$('.closereg').click(function(){
+			$('#reg').animate({
+				opacity:'0',
+			}).slideUp('fast', 'linear');
+			$('.screen').animate({
+				opacity: '0'
+			}).slideUp('fast', 'swing');
+		})
+		
+		//	关闭登录窗口
+		$('.closelogin').click(function(){
+			$('#login').animate({
+				opacity:'0',
+			}).slideUp('fast', 'linear');
+			$('.screen').animate({
+				opacity: '0'
+			}).slideUp('fast', 'swing');
+		})
+		//	表单验证
+		var user = $('#reg input[name="user"]');
+		var pass = $('#reg input[name="pass"]');
+		var notpass = $('#reg input[name="notpass"]');
+		var email = $('#reg input[name="email"]');
+		var year = $('#reg select[name="year"]');
+		var month = $('#reg select[name="month"]');
+		var day = $('#reg select[name="day"]');
+		var ques = $('#reg select[name="ques"]');
+		var ans = $('#reg input[name="ans"]');
+		var ps = $('#reg textarea[name="ps"]');
+		var submit = $('#reg .submit');
+		
+		//	用户名
+		user.on('focus', function () {
+			$('#reg .info_user').show();
+			$('#reg .error_user').hide();
+			$('#reg .succ_user').hide();
+		}).on('blur', function () {
+			if ($(this).val().trim() == '') {
+				$('#reg .info_user').hide();
+				$('#reg .error_user').hide();
+				$('#reg .succ_user').hide();
+			} else if (!check_user()) {
+				$('#reg .error_user').show();
+				$('#reg .info_user').hide();
+				$('#reg .succ_user').hide();
+			} else {
+				$('#reg .succ_user').show();
+				$('#reg .error_user').hide();
+				$('#reg .info_user').hide();
+			}
+		});
+		
+		function check_user() {
+			var flag = true;
+			if ( !/[\w]{2,20}/.test( user.val().trim() ) ){
+				$('#reg .error_user').html('输入不合法，请重新输入！');
+				return false;
+			} else {
+				$('#reg .loading').show();
+				$('#reg .info_user').hide();
+				$.ajax({
+					method : 'POST',
+					url : '/checkUser',
+					data : {
+						name: user.val(),
+					},
+					dataType: 'json',
+					success : function (text) {
+						if( text.msg == 0 ){
+							$('#reg .error_user').html('用户名被占用！');
+							flag = false;
+						}else{
+							flag = true;
+						}
+						$('#reg .loading').hide();
+					},
+					error: function(err){
+						console.log(err);
+					},
+					async: false,
+				});
+			}
+			return flag;
+		}
+		
+		//	密码验证
+		pass.on('focus', function () {
+			$('#reg .info_pass').show();
+			$('#reg .error_pass').hide();
+			$('#reg .succ_pass').hide();
+		}).on('blur', function () {
+			if ( pass.val().trim() == '' ) {
+				$('#reg .info_pass').hide();
+			} else {
+				if (check_pass()) {
+					$('#reg .info_pass').hide();
+					$('#reg .error_pass').hide();
+					$('#reg .succ_pass').show();
+				} else {
+					$('#reg .info_pass').hide();
+					$('#reg .error_pass').show();
+					$('#reg .succ_pass').hide();
+				}
+			}
+		});
+				
+		pass.on('keyup', function () {
+			check_pass();
+		});
+		
+		//	密码验证函数
+		function check_pass() {
+			var value = pass.val().trim();
+			var value_length = value.length;
+			var code_length = 0;
+			
+			//	第一个必须条件的验证6-20位之间
+			if (value_length >= 6 && value_length <= 20) {
+				$('#reg .info_pass .q1').html('●').css('color', 'green');
+			} else {
+				$('#reg .info_pass .q1').html('○').css('color', '#666');
+			}
+			
+			//	第二个必须条件的验证，字母或数字或非空字符，任意一个即可
+			if (value_length > 0 && !/\s/.test(value)) {
+				$('#reg .info_pass .q2').html('●').css('color', 'green');
+			} else {
+				$('#reg .info_pass .q2').html('○').css('color', '#666');
+			}
+			
+			//	第三个必须条件的验证，大写字母，小写字母，数字，非空字符 任意两种混拼即可
+			if (/[\d]/.test(value)) {
+				code_length++;
+			}
+			
+			if (/[a-z]/.test(value)) {
+				code_length++;
+			}
+			
+			if (/[A-Z]/.test(value)) {
+				code_length++;
+			}
+			
+			if (/[^\w]/.test(value)) {
+				code_length++;
+			}
+			
+			if (code_length >= 2) {
+				$('#reg .info_pass .q3').html('●').css('color', 'green');
+			} else {
+				$('#reg .info_pass .q3').html('○').css('color', '#666');
+			}
+			
+			//	安全级别
+			if (value_length >= 10 && code_length >= 3) {
+				$('#reg .info_pass .s1').css('color', 'green');
+				$('#reg .info_pass .s2').css('color', 'green');
+				$('#reg .info_pass .s3').css('color', 'green');
+				$('#reg .info_pass .s4').html('高').css('color', 'green');
+			} else if (value_length >= 8 && code_length >= 2) {
+				$('#reg .info_pass .s1').css('color', '#f60');
+				$('#reg .info_pass .s2').css('color', '#f60');
+				$('#reg .info_pass .s3').css('color', '#ccc');
+				$('#reg .info_pass .s4').html('中').css('color', '#f60');
+			} else if (value_length >= 1) {
+				$('#reg .info_pass .s1').css('color', 'maroon');
+				$('#reg .info_pass .s2').css('color', '#ccc');
+				$('#reg .info_pass .s3').css('color', '#ccc');
+				$('#reg .info_pass .s4').html('低').css('color', 'maroon');
+			} else {
+				$('#reg .info_pass .s1').css('color', '#ccc');
+				$('#reg .info_pass .s2').css('color', '#ccc');
+				$('#reg .info_pass .s3').css('color', '#ccc');
+				$('#reg .info_pass .s4').html(' ');
+			}	
+			
+			if (value_length >= 6 && value_length <= 20 && !/\s/.test(value) && code_length >= 2) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		//	密码确认
+		notpass.on('focus', function () {
+			$('#reg .info_notpass').show();
+			$('#reg .error_notpass').hide();
+			$('#reg .succ_notpass').hide();
+		}).on('blur', function () {
+			if (notpass.val().trim() == '') {
+				$('#reg .info_notpass').hide();
+			} else if (check_notpass()){
+				$('#reg .info_notpass').hide();
+				$('#reg .error_notpass').hide();
+				$('#reg .succ_notpass').show();
+			} else {
+				$('#reg .info_notpass').hide();
+				$('#reg .error_notpass').show();
+				$('#reg .succ_notpass').hide();
+			}
+		});
+		
+		function check_notpass() {
+			if ( notpass.val().trim() == pass.val().trim() ) return true;
+		}
+		
+		//	电子邮件
+		email.on('focus', function () {
+		
+			//	补全界面
+			if ( $(this).val().indexOf('@') == -1) $('#reg .all_email').show();
+		
+			$('#reg .info_email').show();
+			$('#reg .error_email').hide();
+			$('#reg .succ_email').hide();
+		}).on('blur', function () {
+		
+			//	补全界面
+			$('#reg .all_email').hide();
+		
+			if ( $(this).val().trim() == '' ) {
+				$('#reg .info_email').hide();
+			} else if (check_email()) {
+				$('#reg .info_email').hide();
+				$('#reg .error_email').hide();
+				$('#reg .succ_email').show();
+			} else {
+				$('#reg .info_email').hide();
+				$('#reg .error_email').show();
+				$('#reg .succ_email').hide();
+			}
+		});
+		
+		function check_email() {
+			if (/^[\w\-\.]+@[\w\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test( email.val().trim() )) return true;
+		}
+		
+		//	电子邮件补全系统键入
+		email.on('keyup', function (event) {
+			if ( $(this).val().indexOf('@') == -1 ) {
+				$('#reg .all_email').show();
+				$('#reg .all_email li span').html( $(this).val() );
+			} else {
+				$('#reg .all_email').hide();
+			}
+			
+			$('#reg .all_email li').css('background', 'none');
+			$('#reg .all_email li').css('color', '#666');
+			
+			if (event.keyCode == 40) {
+				if (this.index == undefined || this.index >= $('#reg .all_email li').length - 1) {
+					this.index = 0;
+				} else {
+					this.index++;
+				}
+				$('#reg .all_email li').eq(this.index).css('background', '#e5edf2');
+				$('#reg .all_email li').eq(this.index).css('color', '#369');
+			}
+			
+			if (event.keyCode == 38) {
+				if (this.index == undefined || this.index <= 0) {
+					this.index = $('#reg .all_email li').length - 1;
+				} else {
+					this.index--;
+				}
+				$('#reg .all_email li').eq(this.index).css('background', '#e5edf2');
+				$('#reg .all_email li').eq(this.index).css('color', '#369');
+			}
+			
+			
+			if (event.keyCode == 13) {
+				$(this).val( $('#reg .all_email li').eq(this.index).text() );
+				$('#reg .all_email').hide();
+				this.index = undefined;
+			}
+			
+		});
+		
+		//	电子邮件补全系统点击获取
+		$('#reg .all_email li').on('mousedown', function () {
+			email.val($(this).text());
+		});
+		
+		//	电子邮件补全系统鼠标移入移出效果
+		$('#reg .all_email li').hover(function () {
+			$(this).css('background', '#e5edf2');
+			$(this).css('color', '#369');
+		}, function () {
+			$(this).css('background', 'none');
+			$(this).css('color', '#666');
+		});
+		
+		
+		//	年月日
+		var day30 = [4, 6, 9, 11];
+		var day31 = [1, 3, 5, 7, 8, 10, 12];
+		
+		//	注入年
+		for (var i = 1950; i <= 2017; i ++) {
+			year.append( "<option value=" + i + ">" + i + "</option>");
+		}
+	
+		//	注入月
+		for (var i = 1; i <= 12; i ++) {
+			if( i < 10){
+				month.append("<option value=0" + i + ">0" + i + "</option>");
+			}else{
+				month.append("<option value=" + i + ">" + i + "</option>");
+			}
+		}
+		
+		year.on('change', select_day);
+		month.on('change', select_day);
+		day.on('change', function () {
+			if (check_birthday()) $('#reg .error_birthday').hide();
+		});
+		
+		function check_birthday() {
+			if (year.val() != 0 && month.val() != 0 && day.val() != 0) return true;
+		}
+		
+		function select_day() {
+			if (year.val() != 0 && month.val() != 0) {
+				
+				//	清理之前的注入
+				day.find("option:not(:first)").remove();
+				
+				//	不确定的日
+				var cur_day = 0;
+				
+				//	注入日
+				if ( $.inArray( parseInt(month.val()), day31) != -1 ) {
+					cur_day = 31;
+				} else if ( $.inArray( parseInt(month.val()), day30) != -1 ) {
+					cur_day = 30;
+				} else {
+					if ((parseInt(year.val()) % 4 == 0 && parseInt(year.val()) % 100 != 0) || parseInt(year.val()) % 400 == 0) {
+						cur_day = 29;
+					} else {
+						cur_day = 28;
+					}
+				}
+				
+				for (var i = 1; i <= cur_day; i ++) {
+					if( i < 10){
+						day.append("<option value=0" + i + ">0" + i + "</option>");
+					}else{
+						day.append("<option value=" + i + ">" + i + "</option>");
+					}
+				}
+				
+			} else {
+				//清理之前的注入
+				day.find("option:not(:first)").remove();
+			}
+		}
+		
+		
+		//备注
+		ps.on('keyup', check_ps).on('paste', function () {
+			//粘贴事件会在内容粘贴到文本框之前触发
+			setTimeout(check_ps, 50);
+		});
+		
+		//清尾
+		$('#reg .ps .clearmore').click(function () {
+			ps.val( ps.val().substring(0,200) );
+			check_ps();
+		});
+		
+		function check_ps() {
+			var num = 200 - ps.val().length;
+			if ( num >= 0 ) {
+				$('#reg .ps').eq(0).show();
+				$('#reg .ps .num').eq(0).html(num);
+				$('#reg .ps').eq(1).hide();
+				return true;
+			} else {
+				$('#reg .ps').eq(0).hide();
+				$('#reg .ps .num').eq(1).html(Math.abs(num)).css('color', 'red');
+				$('#reg .ps').eq(1).show();
+				return false;
+			}
+		}
+		
+		
+		// 提交
+		submit.click(function () {
+			var flag = true;
+		
+			if (!check_user()) {
+				$('#reg .error_user').show();
+				flag = false;
+			}
+			
+			if (!check_pass()) {
+				$('#reg .error_pass').show();
+				flag = false;
+			}
+			
+			if (!check_notpass()) {
+				$('#reg .error_notpass').show();
+				flag = false;
+			}
+			
+			if (!check_email()) {
+				$('#reg .error_email').show();
+				flag = false;
+			}
+			
+			if (!check_birthday()) {
+				$('#reg .error_birthday').show();
+				flag = false;
+			}
+			
+			if (!check_ps()) {
+				flag = false;
+			}
+		
+			if (flag) {
+				var _this = this;
+				$('#loading').css({
+					left: ( $(window).width() - $('#loading').outerWidth() )/2, 
+					top: ( $('#reg').height() - $('#loading').outerHeight() )/2 + parseInt($('#reg').css('top')),
+				}).show();
+				$('#loading p').html('正在提交注册中...');
+				_this.disabled = true;
+				$(_this).css('backgroundPosition', 'right');
+				$.ajax({
+					method : 'post',
+					url : '/addUser',
+					data : {
+						name: user.val(),
+						pass: pass.val(),
+						ques: ques.val(),
+						ans: ans.val(),
+						email: email.val(),
+						birth: year.val() + '-' + month.val() + '-' + day.val(),
+						ps: ps.val(),
+					},
+					success: function(text){
+						if( text.msg == 1 ){
+							$('#reg .succ').hide();
+							$('#loading').hide();
+							$('#success').css({
+								left: ( $(window).width() - $('#success').outerWidth() )/2, 
+								top: ( $('#reg').height() - $('#success').outerHeight() )/2,
+							}).show();
+							$('#success p').html('注册成功，请登录...');
+							setTimeout(function (){
+								$('#success').hide();
+								$('#reg').animate({
+									opacity:'0',
+								}).slideUp('fast', 'linear');
+								$('.screen').animate({
+									opacity: '0'
+								}).slideUp('fast', 'swing');
+							}, 1500)
+							$('#reg form')[0].reset();
+						}
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});
+			}
+			
+		});
+		
+		var code = $('#code');
+		$.identifyCode(code);
+		code.click(function(){
+			$.identifyCode(code);
+		})
+		//	登录
+		$('#login .button a').click(function(){
+			var uName = $('#login input[name="user"]').val();
+			var uPass = $('#login input[name="pass"]').val();
+			var uCode = $('#login input[name="icode"]').val();
+			if( uName == '' || uPass == '' ){
+				alert("用户名或密码不能为空！")
+			}else if( uCode == '' ){
+				alert("验证码不能为空");
+				$.identifyCode(code);
+			}else if( uCode.toLowerCase() != $('#code').val().toLowerCase() ){
+				alert("验证码输入错误，请重新输入！");
+				$('#login input[name="icode"]').val('');
+				$('#login input[name="icode"]').focus();
+				$.identifyCode(code);
+			}else if(/[\w]{2,20}/.test( uName.trim() ) && uPass.length >= 6 && uPass.length <= 20 ) {
+				var _this = this;
+				$('#loading').css({
+					left: ( $(window).width() - $('#loading').outerWidth() )/2, 
+					top: ( $('#login').height() - $('#loading').outerHeight() )/2 + parseInt($('#login').css('top')),
+				}).show();
+				$('#loading p').html('正在尝试登录...');
+				_this.disabled = true;
+				$.ajax({
+					method : 'post',
+					url : '/login',
+					data : {
+						name: $('#login input[name="user"]').val(),
+						pass: $('#login input[name="pass"]').val(),
+					},
+					dataType: 'json',
+					success : function (text) {
+						$('#loading').hide();
+						if( text.msg == 1 ){
+							$('#login .info').html('');
+							$('#success').css({
+								left: ( $(window).width() - $('#success').outerWidth() )/2, 
+								top: ( $('#login').height() - $('#success').outerHeight() )/2 + parseInt($('#login').css('top')),
+							}).show();
+							$('#success p').html('登录成功，请稍后...');
+							localStorage.setItem( "user", $('#login input[name="user"]').val() );
+							setTimeout(function () {
+								$('#success').hide();
+								$('#login').animate({
+									opacity:'0',
+								}).slideUp('fast', 'linear');
+								$('.screen').animate({
+									opacity: '0'
+								}).slideUp('fast', 'swing');
+								$('#login form')[0].reset();
+								
+								$('.reg').hide();
+								$('.login').hide();
+								$('.member em').html( localStorage.getItem('user') );
+								$('.dispatch').attr('href', '/handAdd');
+							}, 1500);
+						}else{
+//							$('#login .info').html('登录失败：用户名或密码不正确！');
+							setTimeout(function(){
+								alert('登录失败：用户名或密码不正确！')
+							}, 300)
+						}
+						_this.disabled = false;
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});
+			} else {
+//				$('#login .info').html('登录失败：用户名或密码不合法！');
+			}
+		})
+		
+	})
+</script>

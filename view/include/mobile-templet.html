@@ -1,0 +1,598 @@
+<style>
+	.mobile{
+		position: relative;
+	}
+	.detail-top{
+		border-bottom: 1px solid #e6e6e6;
+    	background-color: #fcfcfc;
+    	padding: 0;
+	}
+	.detail-top_nav{
+	    padding: 17px 0 10px;
+	}
+	.detail-top_nav .title{
+		float: left;
+		font: 30px/30px arial;
+		height: 30px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		box-shadow: 2px 2px 3px #aaaaaa;
+	}
+	.detail-top_nav .step{
+		float: left;
+		line-height: 30px;
+		font-family: simsun;
+		margin-left: 12px;
+		font-size: 13px;
+	}
+	.detail-top_nav .step a{
+		font-family: Microsoft YaHei;
+	}
+	.search{
+		float: right;
+		height: 30px;
+		margin-top: 1px;
+	}
+	.search input{
+		border: 1px solid #ccc;
+		border-right: none;
+	    color: #333;
+	    float: left;
+	    font: 14px/20px arial;
+	    height: 20px;
+	    padding: 4px;
+	    width: 200px;
+	}
+	.search a{
+		background:#f60;
+	    color: #fff;
+	    float: left;
+	    font-family: Microsoft YaHei;
+	    height: 30px;
+	    line-height: 30px;
+	    text-align: center;
+	    width: 58px;
+	}
+	
+	.mo-wrap{
+		padding: 30px 0;
+	}
+	.mo-title{
+		border-top:2px solid #4595e6;
+		background: #fafafa;
+	}
+	.mo-title-inner{
+		padding: 0 20px 8px;
+		border-left: 1px solid #e6e6e6;
+		border-right: 1px solid #e6e6e6;
+	}
+	.mo-title h3{
+		margin: 10px 0 0;
+		font: bold 16px/24px 'Microsoft YaHei',arial;
+	}
+	.params{
+		border: 1px solid #e6e6e6;
+	}
+	.params a{
+		color: #0a50a1;
+		text-decoration: none;
+	}
+	.params a:hover{
+		background-color: #FF6600;
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+	.mo-brand{
+		max-height: 66px;
+		overflow: hidden;
+	}
+	.filter-brand, .filter-item{
+		position: relative;
+		padding: 0 66px 0 90px;
+		zoom: 1;
+	}
+	.mo-filter-type{
+		position: absolute;
+		left: 0;
+		top: 9px;
+		width: 90px;
+		height: 18px;
+		font: 12px/18px arial;
+		color: #666666;
+		text-align: right;
+	}
+	.mo-brand-list, .mo-price-list, .mo-size-list, .mo-net-list, .mo-ram-list, .mo-rom-list{
+		padding: 3px 0 3px 52px;
+		position: relative;
+		zoom: 1;
+		overflow: hidden;
+	}
+	.params .mo-all{
+		float: left;
+		height: 18px;
+		line-height: 18px;
+		padding: 0 3px;
+		margin: 6px 0 0 -43px;
+		cursor: pointer;
+	}
+	.mo-active{
+		background-color: #FF6600;
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+	.params .mo-active{
+		color: #FFFFFF;
+	}
+	.mo-brand-list a, .mo-price-list a, .mo-size-list a, .mo-net-list a, .mo-ram-list a, .mo-rom-list a{
+		margin-right: 3px;
+		float: left;
+		height: 18px;
+		line-height: 18px;
+		padding: 0 3px;
+		margin: 6px 12px 6px 0;
+		white-space: nowrap;
+	}
+	.filter-item{
+		height: 36px;
+		overflow: hidden;
+		border-top: 1px dashed #e6e6e6;
+	}
+	.sort-box{
+		border: 1px solid #e6e6e6;
+		background: #FAFAFA;
+	}
+	.small-page{
+		float: right;
+		padding: 6px 10px;
+		height: 26px;
+		color: #666666;
+		border-left: 1px solid #E6E6E6;
+		font-size: 0;
+	}
+	.small-page-prev, .small-page-next{
+		width: 26px;
+		cursor: pointer;
+		background: url(../../static/img/list20150210.png) no-repeat;
+	}
+	.small-page-prev, .small-page-active, .small-page-next{
+		display: inline-block;
+		height: 26px;
+		line-height: 26px;
+		overflow: hidden;
+		vertical-align: top;
+	}
+	.small-page-prev{
+		background-position: 0 -46px;
+	}
+	.small-page-next{
+		background-position: -78px -46px;
+	}
+	.small-page-active{
+		padding: 0 8px;
+		font-size: 12px;
+	}
+	.small-page-active b{
+		color: #4595E6;
+	}
+	.sort-box .total{
+		float: right;
+		height: 24px;
+		line-height: 24px;
+		padding: 7px 20px 7px 10px;
+		white-space: nowrap;
+		color: #999;
+	}
+	.sort-box .total b{
+		color: #FF3333;
+		font-weight: bold;
+	}
+	.sort a, .sort span{
+		float: left;
+		margin-left: -1px;
+		padding: 7px 18px;
+		height: 24px;
+		border-left: 1px solid #fafafa;
+		border-right: 1px solid #fafafa;
+		font: 12px/2 arial;
+		color: #666666;
+		cursor: pointer;
+	}
+	.sort a{
+		text-decoration: none;
+	}
+	.sort a:hover, .sort span:hover{
+		position: relative;
+		background: #FFFFFF;
+		color: #0A50A1;
+		border-color: #e6e6e6;
+	}
+	.sort span.active, .sort a.active{
+		position: relative;
+		height: 24px;
+		margin: -1px 0 -1px -1px;
+		padding: 8px 18px;
+		color: #FFFFFF;
+		background: #4595e6;
+		border-color: #4595e6;
+	}
+	.sort a.active .down{
+		background-position: -20px -20px;
+	}
+	.sort a.active .up{
+		background-position: -31px -20px;
+	}
+	.sort em{
+		float: left;
+	}
+	.sort i{
+		float: left;
+		margin: 8px 0 0 4px;
+		width: 7px;
+		height: 9px;
+		background: url(../../static/img/list20150210.png) no-repeat;
+	}
+	.sort .down{
+		background-position: -42px -20px;
+	}
+	.sort .up{
+		background-position: -53px -20px;
+	}
+	
+	.mo-mode{
+		min-height: 270px;
+	}
+	.mo-mode .no-result-box{
+		padding-bottom: 30px;
+		margin-top: 30px;
+		border-bottom: 1px solid #e6e6e6;
+		display: none;
+	}
+	.no-result-box .no-result{
+		position: relative;
+		padding: 0 30px 0 125px;
+	}
+	.no-result i{
+		position: absolute;
+		left: 50px;
+		top: 6px;
+		width: 58px;
+		height: 50px;
+		background: url("../../static/img/no-result-tip.png") no-repeat 0 50%;
+	}
+	.no-result .tips{
+		font-weight: bold;
+		color: #CC0000;
+	}
+	.no-result p{
+		padding: 5px 0;
+		line-height: 20px;
+		font-size: 14px;
+		color: #666666;
+	}
+	.mo-mode li{
+		position: relative;
+		float: left;
+		padding: 19px 9px 33px 9px;
+		width: 220px;
+		border: 1px solid #FFFFFF;
+	}
+	.mo-mode li:hover{
+		border: 1px solid #E6E6E6;
+		box-shadow: 0 0 2px 2px #f8f8f8;
+	}
+	.mo-mode a{
+		color: #0a50a1;
+		text-decoration: none;
+	}
+	.mo-mode .pic{
+		display: block;
+		padding-bottom: 7px;
+		text-align: center;
+	}
+	.mo-mode .pic img{
+		vertical-align: middle;
+	}
+	.mo-mode h3{
+		height: 36px;
+		padding: 0 5px 0 10px;
+		font: 12px/18px arial;
+		overflow: hidden;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+	.mo-mode h3 a{
+		color: #666666;
+	}
+	.mo-mode h3 span{
+		color: #FF3333;
+	}
+	.mo-mode a:hover, .mo-mode h3 a:hover span{
+		color: #c00;
+		text-decoration: underline;
+	}
+	.mo-mode .price-row{
+		padding: 0 5px 0 10px;
+		margin: 9px 0 0;
+		height: 22px;
+		font: 12px/22px arial;
+		color: #999999;
+		overflow: hidden;
+		zoom: 1;
+	}
+	.price-row .price-tip{
+		float: left;
+		overflow: hidden;
+	}
+	.price-row .price{
+		float: left;
+		overflow: hidden;
+		font-family: verdana;
+		font-size: 16px;
+		font-weight: bold;
+		color: #FF3333;
+	}
+	.price-row .price .price-sign{
+		font-weight: normal;
+	}
+	.comment-row{
+		padding: 0 5px 0 10px;
+		margin-top: 4px;
+		height: 24px;
+		line-height: 24px;
+		overflow: hidden;
+	}
+	.comment-row .star{
+		float: left;
+		width: 69px;
+		height: 12px;
+		margin: 5px 5px 0 0;
+		background: url(../../static/img/list20150210.png) no-repeat;
+		background-position: 0 -113px;
+		overflow: hidden;
+	}
+	.comment-row em{
+		float: left;
+		color: #CCCCCC;
+		padding: 0 5px 0 0;
+		font-size: 14px;
+		font-family: simsun;
+	}
+	.star em{
+		height: 12px;
+		background: url(../../static/img/list20150210.png) no-repeat;
+		background-position: 0 -98px;
+	}
+	.comment-row .score{
+		float: left;
+		margin-right: 5px;
+		color: #FF3333;
+	}
+	.comment-row .comment-num{
+		float: left;
+		height: 20px;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	
+	
+	.page .pagebar{
+		font-size: 14px;
+		font-family: arial;
+		line-height: 34px;
+		text-align: center;
+		padding-top: 30px;
+	}
+	.pagebar .pagenext, .pagebar .pageprev, .pagebar .curr{
+		display: inline-block;
+		border: 1px solid #e6e6e6;
+		padding: 0 7px;
+		height: 34px;
+		min-width: 20px;
+		white-space: nowrap;
+		margin: 0 3px 0 2px;
+		vertical-align: top;
+	}
+	.pagebar .curr, .pagebar a:hover{
+		font-family: arial;
+		background: #4595e6;
+		color: #FFFFFF;
+		border-color: #4595e6;
+		text-decoration: none;
+	}
+	.pagebar .pagenext, .pagebar .pageprev{
+		padding: 0 24px 0 24px;
+		color: #333333;
+		display: inline-block;
+		border: 1px solid #e6e6e6;
+		height: 34px;
+		min-width: 20px;
+	}
+</style>
+<section>
+	<div class="mobile content-center">
+		<div class="detail-top clearfix">
+			<div class="detail-top_nav content-center clearfix">
+				<div class="title">手机咨讯网</div>
+				<div class="step">
+					<a href="/" target="_self">首页</a>
+					  &gt; 手机
+				</div>
+				<div class="search">
+					<input class="searInp" type="text" placeholder="请输入要查询的关键词"/>
+					<a class="searMo" target="_blank" href="javascript:;">搜索</a>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper mo-wrap">
+			<div class="mo-title">
+				<div class="mo-title-inner">
+					<h3>手机筛选</h3>
+				</div>
+			</div>
+			<div class="params">
+				<div class="mo-brand filter-brand">
+					<strong class="mo-filter-type">品牌：</strong>
+					<div class="mo-brand-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">三星</a>
+						<a href="javascript:;">vivo</a>
+						<a href="javascript:;">华为</a>
+						<a href="javascript:;">中兴</a>
+						<a href="javascript:;">OPPO</a>
+						<a href="javascript:;">苹果</a>
+						<a href="javascript:;">LG</a>
+						<a href="javascript:;">荣耀</a>
+						<a href="javascript:;">魅族</a>
+						<a href="javascript:;">努比亚</a>
+						<a href="javascript:;">诺基亚</a>
+						<a href="javascript:;">乐视</a>
+						<a href="javascript:;">小米</a>
+						<a href="javascript:;">一加</a>
+						<a href="javascript:;">锤子科技</a>
+						<a href="javascript:;">索尼</a>
+						<a href="javascript:;">酷派</a>
+						<a href="javascript:;">HTC</a>
+						<a href="javascript:;">联想</a>
+						<a href="javascript:;">朵唯</a>
+						<a href="javascript:;">黑莓</a>
+						<a href="javascript:;">微软</a>
+						<a href="javascript:;">联想ZUK</a>
+						<a href="javascript:;">谷歌</a>
+						<a href="javascript:;">天语</a>
+					</div>
+				</div>
+				<div class="mo-price filter-item">
+					<strong class="mo-filter-type">价格：</strong>
+					<div class="mo-price-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">500元以下</a>
+						<a href="javascript:;">500-1000元</a>
+						<a href="javascript:;">1000-1500元</a>
+						<a href="javascript:;">1500-2000元</a>
+						<a href="javascript:;">2000-3000元</a>
+						<a href="javascript:;">3000-4000元</a>
+						<a href="javascript:;">4000元以上</a>
+					</div>
+				</div>
+				<div class="mo-size filter-item">
+					<strong class="mo-filter-type">主屏尺寸：</strong>
+					<div class="mo-size-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">6.0英寸以上</a>
+						<a href="javascript:;">5.6-6.0英寸</a>
+						<a href="javascript:;">5.1-5.5英寸</a>
+						<a href="javascript:;">5.0英寸</a>
+						<a href="javascript:;">4.5-4.9英寸</a>
+						<a href="javascript:;">4.0-4.4英寸</a>
+						<a href="javascript:;">4.0英寸以下</a>
+					</div>
+				</div>
+				<div class="mo-net filter-item">
+					<strong class="mo-filter-type">网络：</strong>
+					<div class="mo-net-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">全网通</a>
+						<a href="javascript:;">双4G</a>
+						<a href="javascript:;">移动4G</a>
+						<a href="javascript:;">联通4G</a>
+						<a href="javascript:;">电信4G</a>
+						<a href="javascript:;">移动3G</a>
+						<a href="javascript:;">电信3G</a>
+						<a href="javascript:;">联通3G</a>
+					</div>
+				</div>
+				<div class="mo-ram filter-item">
+					<strong class="mo-filter-type">RAM容量：</strong>
+					<div class="mo-ram-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">6GB</a>
+						<a href="javascript:;">4GB</a>
+						<a href="javascript:;">3GB</a>
+						<a href="javascript:;">2GB</a>
+						<a href="javascript:;">1GB</a>
+					</div>
+				</div>
+				<div class="mo-rom filter-item">
+					<strong class="mo-filter-type">ROM容量：</strong>
+					<div class="mo-rom-list">
+						<span class="mo-all mo-active">不限</span>
+						<a href="javascript:;">256GB</a>
+						<a href="javascript:;">128GB</a>
+						<a href="javascript:;">64GB</a>
+						<a href="javascript:;">32GB</a>
+						<a href="javascript:;">16GB</a>
+						<a href="javascript:;">8GB</a>
+						<a href="javascript:;">4GB以下</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mo-content">
+			<div class="sort-box clearfix">
+				<div class="small-page">
+					<div @click="prev()" class="small-page-prev">&nbsp;</div>
+					<span class="small-page-active"><b>{{ pageNum }}</b>/{{ Math.ceil(this.filterlist.length/45) }}</span>
+					<div @click="next()" class="small-page-next">&nbsp;</div>
+				</div>
+				<span class="total">共<b>{{ length }}</b>款</span>
+				<div class="sort">
+					<span class="sort-hot active"><em>热门</em></span>
+					<a class="sort-time" href="javascript:;">
+						<em>时间</em>
+						<i class="down"></i>
+					</a>
+					<a class="sort-price" href="javascript:;" title="价格由低到高">
+						<em>价格</em>
+						<i class="up"></i>
+					</a>
+				</div>
+			</div>
+			<div class="mo-mode">
+				<div class="no-result-box">
+					<div class="no-result">
+						<i></i>
+						<p class="tips">
+							对不起，暂时没有找到您查询的产品
+						</p>
+						<p>请重新换个关键词吧！</p>
+					</div>
+				</div>
+				<ul class="clearfix">
+					<li v-for="mo in filter">
+						<a href="/mobile/{{ mo.href_flag }}.html" class="pic" target="_blank">
+							<img width="220" height="165" v-bind:src="mo.pic" alt="" />
+						</a>
+						<h3>
+							<a href="javascript:;" title="{{{ mo.point }}}" target="_blank">
+								{{{ mo.name }}}（{{{ mo.network }}}） 
+								<span>{{{ mo.point }}}</span>
+							</a>
+						</h3>
+						<div class="price-row">
+							<span class="price-tip">参考价：</span>
+							<span class="price price-normal">
+								<b class="price-sign">￥</b>
+								<b class="price-type">{{{ mo.price }}}</b>
+							</span>
+						</div>
+						<div class="comment-row">
+							<span class="star">
+								<em v-bind:style="{ width: 10*mo.star + '%'}"></em>
+							</span>
+							<span class="score">{{ mo.star }}</span>
+							<em>|</em>
+							<a href="javascript:;" target="_blank" class="comment-num">0人点评</a>
+						</div>
+					</li>
+				</ul>
+				<div class="page">
+					<div class="pagebar">
+						<a @click="prev()" class="pageprev" href="javascript:;">&lt;上一页</a>
+						<span class="curr">{{ pageNum }}</span>
+						<a @click="next()" class="pagenext" href="javascript:;">下一页&gt;</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

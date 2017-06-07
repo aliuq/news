@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../static/css/common.css" />
+		<script src="../../static/script/lib/jquery.js"></script>
+		<title>手动添加</title>
+		<style>
+			body{
+				position: relative;
+			}
+			.form{
+				padding: 50px 200px;
+			}
+			.form span{
+				display: inline-block;
+				box-sizing: border-box;
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
+			.form span.left{
+				width: 15%;
+				text-align: right;
+				vertical-align: top;
+				padding-right: 10px;
+			}
+			.form span.right{
+				width: 85%;
+			}
+			.form span.right input{
+				width: 100%;
+				box-sizing: border-box;		
+			}
+			.form span.right textarea{
+				box-sizing: border-box;
+				width: 100%;
+				resize: none;
+				
+			}
+			.form span.right textarea.ps{
+				height: 100px;
+			}
+			input, textarea{
+				padding: 5px 8px;
+			}
+			.form span.right.clearTips{
+				position: relative;
+				padding-bottom: 10px;
+			}
+			.form .tips{
+				font-style: normal;
+				font-size: 10px;
+				color: red;
+				cursor: pointer;
+				position: absolute;
+				right: 10px;
+				text-align: right;
+				display: none;
+			}
+			.form span.right textarea.cont{
+				height: 500px;
+				min-height: 400px;
+			}
+			
+			.btnAdd{
+				height: 50px;
+				background: #000000;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				opacity: 0.6;
+				line-height: 50px;
+				font-size: 26px;
+				text-align: center;
+				display: none;
+			}
+			.btnAdd a{
+				color: #FFFFFF;
+				text-decoration: none;
+			}
+			.btnAdd a.addImg{
+				position: absolute;
+				left: 50px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="form">
+			<form>
+				<span class="left">标题: </span><span class="right"><input class="title" type="text" /></span>
+				<span class="left">后缀: </span><span class="right"><input class="url_flag" type="text" /></span>
+				<span class="left">图片地址: </span><span class="right"><input class="imgSrc" type="text" /></span>
+				<span class="left">简介: </span><span class="right clearTips"><textarea class="ps" placeholder="不超过50"></textarea>
+					<i class="tips">清尾</i>
+				</span>
+				<span class="left">正文:</span><span class="right"><textarea class="cont"></textarea></span>
+			</form>
+		</div>
+		<div class="btnAdd">
+			<a class="addImg" href="javascript:;">添加图片</a>
+			<a class="handaddnew" href="javascript:;">添加文章</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			
+			
+			$('.btnAdd a').hover(function(){
+				$(this).parent().animate({
+					opacity: 0.8
+				})
+			}, function(){
+				$(this).parent().animate({
+					opacity: 0.6
+				})
+			})
+			
+			var json = {
+				topics: [],
+				details: [],
+			};
+			var t = 'common';
+			//	清尾
+			$('textarea.ps').keydown(function(){
+				if( $(this).val().trim().length > 50 ){
+					$('.tips').show();
+				}else{
+					$('.tips').hide();
+				}
+			})
+			$('.tips').click(function(){
+				var str = $('textarea.ps').val().trim().substr(0, 50);
+				$('textarea.ps').val( str ).focus();
+				$(this).hide();
+			})
+			//	验证表单 TODO
+			
+			$('.handaddnew').click(function(){
+				var date = new Date();
+				newdate = dateFormat(date, '年', '月', '日', ':', ':');
+				newdateO = dateFormat(date, '-', '-', '', ':', ':');
+				var title = $('input.title').val();
+				var href_flag = $('input.url_flag').val();
+				var info = $('textarea.ps').val();
+				var imgsrc = $('input.imgSrc').val();
+				var url_flag = href_flag + '.html';
+				var href = '/details/' + url_flag;
+				var cont = $('textarea.cont').val();
+				json.topics.push({
+					t: t,
+					title: title,
+					href: href,
+					href_flag: href_flag,
+					imgsrc: imgsrc,
+					info: info,
+					date: newdate,
+				})
+				var contents = '<p>' + cont + '</p>';
+				var authors = 'admin';
+				var time = newdateO;
+				
+				json.details.push({
+					url: href,
+					url_flag: url_flag,
+					contents: contents,
+					time: time,
+					authors: authors
+				})
+				if( title == '' || href_flag == '' || cont == '' ){
+					alert('内容不能为空，请重新输入！');
+				}else{
+					$.ajax({
+						type:"post",
+						url:"/handAddport",
+						data: json,
+						dataType: 'json',
+						success: function(d){
+							if( d.msg == 1 ){
+								$('form input').val('');
+								$('form textarea').val('');
+								alert('添加成功！')
+								window.location.replace(window.location);
+							}
+						},
+						error: function(err){
+							
+						}
+					});
+				}
+			})
+			
+			$('.addImg').click(function(){
+				var html = $('textarea.cont').val();
+				var str = '<img src="">';
+				var newHtml = html + str;
+				$('textarea.cont').val(newHtml);
+				$('textarea.cont').selectRange(newHtml.length-2, newHtml.length-2);
+			})
+			
+			//
+			var scrollTopArr = [];
+			var i = 0;
+			scrollTopArr[0] = 0;
+			$(document).scroll(function(e){
+				i++;
+				scrollTopArr[i] = $(document).scrollTop();
+				if( scrollTopArr[i] > scrollTopArr[i-1] ){ // 当前滚动条位置 大于 上一个滚动条位置 即往下滚
+					$('.btnAdd').fadeIn();
+				}else{
+					$('.btnAdd').fadeOut();
+				}
+				
+			})
+			
+			//	设置光标
+			$.fn.selectRange = function(start, end) {  
+			    return this.each(function() {  
+			        if (this.setSelectionRange) {  
+			            this.focus();  
+			            this.setSelectionRange(start, end);  
+			        } else if (this.createTextRange) {  
+			            var range = this.createTextRange();  
+			            range.collapse(true);  
+			            range.moveEnd('character', end);  
+			            range.moveStart('character', start);  
+			            range.select();  
+			        }  
+			    });  
+			};  
+			
+			function dateFormat(date, year, month, day, hour, min){
+				var YY = date.getFullYear();		// 年  	
+			    var MM = date.getMonth() + 1;  	// 月
+			    MM = MM < 10 ? ('0' + MM) : MM;  
+			    var DD = date.getDate();  		// 日
+			    DD = DD < 10 ? ('0' + DD) : DD;  
+			    var hh = date.getHours();  		// 时
+			    hh = hh < 10 ? ('0' + hh) : hh;
+			    var mm = date.getMinutes(); // 分
+			    mm = mm < 10 ? ('0' + mm) : mm;
+			    var ss = date.getSeconds();		// 秒
+			    ss = ss < 10 ? ('0' + ss) : ss;
+			    return YY + year + MM + month + DD + day + ' ' + hh + hour + mm + min + ss; 
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+		<link rel="shortcut icon" href="../static/img/icon_16X16.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../static/css/reset.css" />
+		<link rel="stylesheet" href="../static/css/bg-css.css"/>
+		<link rel="stylesheet" href="../static/css/font-awesome.min.css" />
+		<script src="../static/script/lib/jquery.js"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="screen"></div>
+		<div class="refre"><i class="fa fa-spinner fa-pulse fa-3x"></i><span>请稍等片刻！</span></div>
+		<div class="linkaddUrl">
+			链接地址：
+			<i class="fa fa-close"></i>
+			<br /><input class="addurl" type="text" >
+			<a class="linkaddnew" href="javascript:;">添加</a>
+		</div>
+		<div class="header">
+			<div class="navbar clearfix">
+				<div class="hd">
+					<span class="title"><a href="/admin">手机咨讯</a></span>
+					<div class="nav">
+						<ul class="zl">
+							<li class="dropDown">
+								<a href="javascript:;" class="add">
+									<i class="fa fa-plus"></i>
+									新增
+									<i class="fa fa-chevron-down"></i>
+								</a>
+								<ul class="navlist clearfix">
+									<li class="adnews">
+										<i class="fa fa-newspaper-o"></i>
+										<span>新闻</span>
+									</li>
+									<li class="adus">
+										<i class="fa fa-user"></i>
+										<span>用户</span>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<span class="reUpda"><a class="reset" href="javascript:;"><i class="fa fa-superpowers"></i></a></span>
+					<ul class="admlogin">
+						<li>
+							<a class="admin_login" href="javascript:;"><i class="fa fa-user"></i>&nbsp; <strong>登录</strong></a>
+							<ul class="navquit clearfix">
+								<li class="admquit">
+									<span>退出</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="asideL">
+			<div class="menu">
+				<h3 class="new">
+					<i class="fa fa-newspaper-o"></i>
+					<span>资讯管理</span>
+					<i class="fa fa-chevron-down newother"></i>
+				</h3>
+				<ul>
+					<li class="newlist"><a href="javascript:;">咨讯列表</a></li>
+					<li class="linkadd"><a href="javascript:;">链接添加</a></li>
+					<li class="handadd"><a href="javascript:;">手动添加</a></li>
+				</ul>
+				<h3 class="user">
+					<i class="fa fa-user"></i>
+					<span>用户管理</span>
+					<i class="fa fa-chevron-down userother"></i>
+				</h3>
+				<ul>
+					<li class="userlist"><a href="javascript:;">用户列表</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="dislpayArrow">
+			<a class="pngfix" href="javascript:;"></a>
+		</div>
+		<div class="article-box">
+			<div class="tabnav">
+				<div class="tabnav-wp">
+					<ul class="acrossTab">
+						<li class="active">
+							<span title="我的桌面">我的桌面</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="iframe_box">
+				<div class="show_iframe" name="我的桌面">
+					<iframe scrolling="yes" frameborder="0" src="http://localhost:3030/welcome"></iframe>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../static/script/lib/vue.js"></script>
+	<script src="../static/script/bg-jquery.js"></script>
+</html>

@@ -1,0 +1,215 @@
+<style>
+	.news__wrap{
+		width:660px;
+		float: left;
+	}
+	.news-list{
+		margin-top: 5px;
+	}
+	.news-list h1{
+		color: #333;
+	    font-size: 24px;
+	    line-height: 40px;
+	    border-bottom: 2px solid #1384d2;
+	}
+	.news-list li{
+		border-bottom: 1px solid #f2f2f2;
+    	padding: 5px 0;
+	}
+	.news-list li:hover{
+		background-color: #f7f7f7;
+	}
+	
+	.news-info{
+		padding: 15px 15px 15px 0;
+	}
+	.news-info .info-pic{
+		float: left;
+		margin: 0 15px 0 0;
+		width: 200px;
+		height: 150px;
+	}
+	.news-info .info-pic img{
+		width: 100%;
+		height: 100%;
+	}
+	.news-info .info-title{
+		font-size: 22px;
+		line-height: 32px;
+		height: 32px;
+		overflow: hidden;
+	}
+	.news-info .info-title a{
+		color: #333;
+	}
+	.news-info .info-title a:hover{
+		color: red;
+	}
+	.news-info p{
+		color: #999;
+		font-size: 14px;
+		line-height: 22px;
+		margin: 15px 0 0;
+	}
+	.news-info a{
+		color: #1f4f88;
+	}
+	.news-info .info-foot{
+		color: #999999;
+		height: 22px;
+		line-height: 22px;
+		padding: 5px 0 0;
+	}
+	.news-info .info-data{
+		float: left;
+		margin: 0 15px 0 0;
+	}
+	.share-box{
+		float: right;
+	    line-height: 20px;
+	    padding: 1px 0 0;
+	}
+	.share-box .num{
+		background: url(../../static/img/share-icon.png) 0 -20px no-repeat;
+		color: #c8c9cc;
+		cursor: pointer;
+    	padding: 0 0 0 20px;
+	}
+	.share-box .num:hover{
+		background-position: 0 -240px;
+		color: #ff7800;
+	}
+	.share-box em{
+		color: #ccc;
+    	margin: 0 10px;
+	}
+	.share-box span, .share-box em, .share-box .share{
+		float: left;
+	}
+	.share{
+		position: relative;
+	}
+	.share .share-icon{
+		display: inline-block;
+		background: url(../../static/img/share-icon.png) 0 -40px no-repeat;
+	    height: 20px;
+	    cursor: pointer;
+	    width: 12px;
+	}
+	.share .share-icon:hover{
+		background-position: 0 -60px;
+	}
+
+	.share .share-des{
+		background-color: #fff;
+	    border: 1px solid #ccc;
+	    padding: 5px 5px 5px 1px;
+	    position: absolute;
+	    right: -15px;
+	    top: 20px;
+	    width: 145px;
+	}
+	.share .share-des a{
+		background: rgba(0, 0, 0, 0) url(../../static/img/share-icon.png) no-repeat scroll 0 0;
+		margin: 0 0 0 5px;
+	    height: 24px;
+	    opacity: 0.8;
+	    padding: 0;
+	    width: 24px;
+	    float: left;
+	    font-size: 18px;
+	    line-height: 24px;
+	}
+	.share .share-des .share-sina{
+		background-position: 0 -85px;
+		display: inline-block;
+	}
+	.share .share-des .share-qzone{
+		background-position: 0 -110px;
+		display: inline-block;
+	}
+	.share .share-des .share-qq{
+		background-position: 0 -135px;
+		display: inline-block;
+	}
+	.share .share-des .share-renren{
+		background-position: 0 -160px;
+		display: inline-block;
+	}
+	.share .share-des .share-weixin{
+		background-position: 0 -185px;
+		display: inline-block;
+	}
+	.more{
+		width: 100%;
+		height: 50px;
+		color: #fff;
+		margin-top: 20px;
+		background: #0381cf;
+		border-radius: 4px;
+		cursor: pointer;
+		box-shadow: 1px 1px 1px #888888;
+	}
+	.more:hover{
+		background: #006bad;
+		color: #FCFCFC;
+	}
+	.more span{
+		display: block;
+		font-size: 24px;
+		line-height: 50px;
+		text-align: center;
+		letter-spacing: 2px;
+	}
+</style>
+<section>
+	<div class="news__wrap">
+		<div class="news-list">
+			<h1>即时更新</h1>
+			<ul>
+				<li v-for='topic in filterTopic' >
+					<div class="news-info clearfix">
+						<a target="_blank" class="info-pic" href="/details/{{ topic.href_flag }}.html"><img v-bind:src="topic.imgsrc" alt=""/></a>
+						<div class="info-title"><a target="_blank" href="/details/{{ topic.href_flag }}.html">{{{ topic.title }}}</a></div>
+						<p>{{ topic.info }}[<a  target="_blank" href="/details/{{ topic.href_flag }}.html">详情</a>]</p>
+						<div class="info-foot">
+							<span class="info-data">{{ topic.date }}</span>
+							<div class="share-box">
+								<a href="/details/{{ topic.href_flag }}.html">
+									<span class="num">抢沙发</span>
+								</a>
+								<em>|</em>
+								<div class="share">
+									<span class="share-icon"></span>
+									<div class="share-des" style="display:none;">
+										<a class="share-sina" href="/" title="分享到新浪微博" "></a>
+										<a class="share-qzone" href="/" title="分享到QQ空间" "></a>
+										<a class="share-qq" href="/" title="分享到腾讯微博" "></a>
+										<a class="share-renren" href="/" title="分享到人人网" "></a>
+										<a class="share-weixin" href="/" title="分享到微信" "></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="more" @click="getMore()">
+			<span>显示更多 +</span>
+		</div>
+	</div>
+</section>
+<script>
+	setTimeout(function(){
+		$(function(){
+			$('.share').hover(function(){
+				$(this).find('.share-des').show();
+			},function(){
+				$(this).find('.share-des').hide();
+			})
+			
+		})
+	},1000)
+	
+</script>

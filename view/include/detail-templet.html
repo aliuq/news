@@ -1,0 +1,407 @@
+<style>
+	.detail a{
+		color: #1f4f88;
+		text-decoration: none;	
+	}
+	.detail-top{
+		border-bottom: 1px solid #e6e6e6;
+    	background-color: #fcfcfc;
+    	padding: 0;
+	}
+	.detail-top_nav{
+	    padding: 17px 0 10px;
+	}
+	.detail-top_nav .title{
+		float: left;
+		font: 30px/30px arial;
+		height: 30px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		box-shadow: 2px 2px 3px #aaaaaa;
+	}
+	.detail-top_nav .step{
+		float: left;
+		line-height: 30px;
+		font-family: simsun;
+		margin-left: 12px;
+		font-size: 13px;
+	}
+	.detail-top_nav .step a{
+		font-family: Microsoft YaHei;
+	}
+	.search{
+		float: right;
+		height: 30px;
+		margin-top: 1px;
+	}
+	.search input{
+		border: 1px solid #ccc;
+		border-right: none;
+	    color: #333;
+	    float: left;
+	    font: 14px/20px arial;
+	    height: 20px;
+	    padding: 4px;
+	    width: 200px;
+	}
+	.search a{
+		background:#f60;
+	    color: #fff;
+	    float: left;
+	    font-family: Microsoft YaHei;
+	    height: 30px;
+	    line-height: 30px;
+	    text-align: center;
+	    width: 58px;
+	}
+	
+	.detail-content{
+		width: 1000px;
+		margin: 0 auto;
+		min-height: 661px;
+	}
+	.detail-left{
+		float: left;
+		width: 640px;
+	}
+	.detail-left .article-header{
+		padding: 30px 0 0;
+		border-bottom: 1px solid #e6e6e6;
+	}
+	.article-header h1{
+		overflow: hidden;
+		font: 700 28px/28px "Microsoft YaHei";
+		color: #000;
+		text-align: center;
+		line-height: 38px;
+		margin-bottom: 5px;
+	}
+	.article-aboute{
+		height: 22px;
+		line-height: 16px;
+		color: #CCCCCC;
+		text-align: center;
+		margin: 10px 0 0;
+	}
+	.article-aboute span{
+		color: #999;
+	}
+	.article-function{
+		width: 640px;
+		height: 25px;
+		font: 0/0 "microsoft yahei";
+		text-align: center;
+	}
+	.article-function .func-item{
+		position: relative;
+		display: inline-block;
+		height: 24px;
+	    border-bottom: 1px solid #f5f5f5;
+	    font: 12px/24px "microsoft yahei";
+	    text-align: left;
+	    vertical-align: top;
+	}
+	.article-function .func-collect{
+		border-left: 1px solid #f5f5f5;
+	}
+	.article-function .func-collect a{
+		width: 57px;
+		padding-left: 28px;
+		border-left: 0 none;
+		background: url(../../static/img/aiticle-bg_v2.png) no-repeat;
+		background-position: -277px -505px;
+	}
+	.article-function .func-collect a, .article-function .sharebtnbox, .article-function .func-comment a{
+	    display: inline-block;
+		height: 24px;
+		background-color: #fff;
+		border-left: 1px solid #f5f5f5;
+		line-height: 24px;
+		vertical-align: top;
+		text-align: left;
+	}
+	.article-function .func-collect a:hover, .article-function .sharebtnbox:hover, .article-function .func-comment a:hover, .sharebtnbox .share-des a:hover{
+		background-color: #f9f9f9;
+	}
+	.sharebtnbox{
+		width: 85px;
+		position: relative;
+	}
+	.sharebtnbox .share-des{
+		position: absolute;
+		/*top: 28px;*/
+		left: 0;
+		width: 96px;
+		padding: 4px 0;
+		background-color: #fff;
+		border: 1px solid #f5f5f5;
+	}
+	.sharebtnbox .share-des a{
+		background: url(../../static/img/share-icon-group.png) no-repeat;
+		display: block;
+		float: none;
+		font: 12px/16px "microsoft yahei";
+		width: 61px;
+		height: 16px;
+		margin: 0;
+		padding: 6px 6px 6px 29px;
+		color: #666666;
+	}
+	.sharebtnbox .share-des .share-sina{
+		background-position: 7px 6px;
+	}
+	.sharebtnbox .share-des .share-qzone{
+		background-position: 7px -20px;
+	}
+	.sharebtnbox .share-des .share-qq{
+		background-position: 7px -229px;
+	}
+	.sharebtnbox .share-des .share-weixin{
+		background-position: 7px -203px;
+	}
+	.sharebtnbox .share-label{
+		position: relative;
+		padding: 0 22px 0 26px;
+	    color: #1f4f88;
+	    cursor: pointer;
+	}
+	.sharebtnbox .share-label .share-ico{
+		top: 2px;
+		left: 10px;
+		width: 11px;
+		height: 12px;
+		background-position: -160px -52px;;
+	}
+	.sharebtnbox .share-label i{
+		position: absolute;
+		right: 11px;
+		top: 7px;
+		width: 7px;
+		height: 4px;
+		background: url(../../static/img/aiticle-bg_v2.png) no-repeat;
+	    background-position: -293px -291px;
+		font: 0/0 "Microsoft YaHei";
+	}
+	.sharebtnbox .share-label:hover .arrow {
+		background-position: -281px -291px;
+	}
+	.article-function .func-comment{
+	    border-right: 1px solid #f5f5f5;
+	}
+	.article-function .func-comment a{
+		min-width: 61px;
+		padding-left: 33px;
+		padding-right: 10px;
+		background: url(../../static/img/aiticle-bg_v2.png) no-repeat;
+		background-position: -273px -601px;
+	}
+	
+	.article-cont{
+		padding: 18px 0 0;
+		font: 16px/28px "microsoft yahei";
+	}
+	.article-cont p{
+		margin: 14px 0;
+		font: 16px/30px "microsoft yahei";
+		word-break: normal;
+		word-wrap: break-word;
+	}
+	.article-cont img{
+		margin: 0 auto;
+		display: block;
+		max-width: 100%;
+	}
+	
+	
+
+</style>
+<section>
+	<div class="detail" id="content">
+		<div class="detail-top clearfix">
+			<div class="detail-top_nav content-center clearfix">
+				<div class="title">手机咨讯网</div>
+				<div class="step">
+					<a href="/" target="_self">首页</a>
+					  &gt; 正文
+				</div>
+				<div class="search">
+					<input type="text" placeholder="请输入要查询的关键词"/>
+					<a target="_blank" href="https://www.baidu.com/s?wd=123">搜索</a>
+				</div>
+			</div>
+		</div>
+		<div class="detail-content clearfix" >
+			<div class="detail-left">
+				<div class="article-header">
+					<h1>{{ cts.title }}</h1>
+					<div class="article-aboute">
+						<span>{{ cts.time }}</span>
+						<span>&nbsp;&nbsp;[ 转载 ]&nbsp;作者：{{ cts.authors }}</span>
+					</div>
+				</div>
+				<div class="article-function">
+					<span class="func-item func-collect"><a rel="nofollow" href="#">收藏文章</a></span>
+					<span class="func-item sharebtnbox" v-on:mouseover="tabShare(0)" v-on:mouseout="tabShare(1)">
+						<span class="share-label">
+							<i class="share-ico"></i>
+							分享到
+							<i class="arrow"></i>
+						</span>
+						<div class="share-des detail-share" v-bind:style="{ display: onOff }">
+							<a class="share-sina" href="/" title="分享到新浪微博">新浪微博</a>
+							<a class="share-qzone" href="/" title="分享到QQ空间" ">QQ空间</a>
+							<a class="share-qq" href="/" title="分享到QQ好友" ">QQ好友</a>
+							<a class="share-weixin" href="/" title="分享到微信">微信二维码</a>
+						</div>
+					</span>
+					<span class="func-item func-comment">
+						<a rel="nofollow" href="javascript:void(0)">评论(<em>0</em>)</a>
+					</span>
+				</div>
+				<div class="article-content">
+					<div class="article-cont">
+						
+					</div>
+				</div>
+			</div>
+			<div class="detail-right">
+				<div class="comment-mod clearfix">
+					<form action="/" method="post" name="form">
+						<div class="comment-hd">
+							<h2>我要评论</h2>
+							<span>共有<em class="comment-num">0</em>条评论</span>
+						</div>
+						<div class="comment-bd">
+							<textarea id="comment_content" name="content" placeholder="有话不说，憋着多难受啊。"></textarea>
+						</div>
+						<div class="submit-btn">
+							<a class="faces-btn" href="javascript:;">表情</a>
+							<input id="sub" type="button" value="发表评论" />
+						</div>
+					</form>
+					<div class="face-main-box" style="display: none;">
+						<div class="prompt">
+							<div class="prompt-hd">
+								<h3>添加表情</h3>
+								<a href="javascript:;" class="close faces-close">关闭</a>
+							</div>
+							<div class="add-face">
+								<ul id="face-img" class="face-img">
+									<li><img src="../static/img/face/1.gif" alt="{:1_1:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/2.gif" alt="{:1_2:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/3.gif" alt="{:1_3:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/4.gif" alt="{:1_4:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/5.gif" alt="{:1_5:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/6.gif" alt="{:1_6:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/7.gif" alt="{:1_7:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/8.gif" alt="{:1_8:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/9.gif" alt="{:1_9:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/10.gif" alt="{:1_10:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/11.gif" alt="{:1_11:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/12.gif" alt="{:1_12:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/13.gif" alt="{:1_13:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/14.gif" alt="{:1_14:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/15.gif" alt="{:1_15:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/16.gif" alt="{:1_16:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/17.gif" alt="{:1_17:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/18.gif" alt="{:1_18:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/19.gif" alt="{:1_19:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/20.gif" alt="{:1_20:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/21.gif" alt="{:1_21:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/22.gif" alt="{:1_22:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/23.gif" alt="{:1_23:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/24.gif" alt="{:1_24:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/25.gif" alt="{:1_25:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/26.gif" alt="{:1_26:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/27.gif" alt="{:1_27:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/28.gif" alt="{:1_28:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/29.gif" alt="{:1_29:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/30.gif" alt="{:1_30:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/31.gif" alt="{:1_31:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/32.gif" alt="{:1_32:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/33.gif" alt="{:1_33:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/34.gif" alt="{:1_34:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/35.gif" alt="{:1_35:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/36.gif" alt="{:1_36:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/37.gif" alt="{:1_37:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/38.gif" alt="{:1_38:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/39.gif" alt="{:1_39:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/40.gif" alt="{:1_40:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/41.gif" alt="{:1_41:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/42.gif" alt="{:1_42:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/43.gif" alt="{:1_43:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/44.gif" alt="{:1_44:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/45.gif" alt="{:1_45:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/46.gif" alt="{:1_46:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/47.gif" alt="{:1_47:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/48.gif" alt="{:1_48:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/49.gif" alt="{:1_49:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/50.gif" alt="{:1_50:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/51.gif" alt="{:1_51:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/52.gif" alt="{:1_52:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/53.gif" alt="{:1_53:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/54.gif" alt="{:1_54:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/55.gif" alt="{:1_55:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/56.gif" alt="{:1_56:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/57.gif" alt="{:1_57:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/58.gif" alt="{:1_58:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/59.gif" alt="{:1_59:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/60.gif" alt="{:1_60:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/61.gif" alt="{:1_61:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/62.gif" alt="{:1_62:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/63.gif" alt="{:1_63:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/64.gif" alt="{:1_64:}" width="24" height="24" /></li>
+									<li><img src="../static/img/face/65.gif" alt="{:1_65:}" width="24" height="24" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- test -->
+				<div class="comment-list" id="comment_list">
+					<div class="comment-item" v-for = "comm in comms" id="{{ comm.num }}">
+						<div class="comment-cont">
+							<div class="comment-bar">
+								<span class="published-time">{{ comm.currentDate }}</span>
+								<span class="floor">[<em>{{ comm.num }}</em>楼]</span>
+							</div>
+							<p class="comment-content">{{{ comm.cont }}}</p>
+							<div class="comment-vote">
+								<a class="ok-btn" href="javascript:void(0)">赞(<span>{{ comm.ok }}</span>)</a>
+								<a class="reply-btn" href="javascript:void(0)">回复</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sidebox">
+			<ul class="toolbar">
+				<li class="toolbar-home">
+					<a href="/">
+						<span class="toolbar-icon toolbar-home-icon"></span>
+						<span class="toolbar-text">频道<br />首页</span>
+						<i class="marsk"></i>
+					</a>
+				</li>
+				<li class="toolbar-comment">
+					<a href="javascript:void(0)">
+						<span class="toolbar-icon toolbar-comment-icon"></span>
+						<span class="toolbar-text">网友<br />评论</span>
+						<i class="marsk"></i>
+					</a>
+				</li>
+				<li class="toolbar-top">
+					<a href="javascript:void(0)">
+						<span class="toolbar-icon toolbar-top-icon"></span>
+						<span class="toolbar-text">返回<br />顶部</span>
+						<i class="marsk"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+
+</script>

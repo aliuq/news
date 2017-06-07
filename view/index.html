@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title><%=title%></title>
+		<link rel="shortcut icon" href="../static/img/icon_16X16.ico" type="image/x-icon" />
+		<script src="../static/script/lib/jquery.js"></script>
+		<link rel="stylesheet" href="../static/css/reset.css" />
+		<link rel="stylesheet" href="../static/css/common.css" />
+	</head>
+	<body id="app">
+		<% include include/index-top.html %>
+		<% include include/index-top-nav.html %>
+		<div class="content-center clearfix" style="min-height: 610px;">
+			<% include include/index-body-left.html %>
+			<% include include/index-body-right.html %>
+		</div>
+		<% include include/index-bottom.html %>
+	</body>
+	<script src="../static/script/lib/vue.js"></script>
+	<script src="../static/script/index.js"></script>
+	<script src="../static/script/index-index.js"></script>
+	<script src="../static/script/common.js"></script>
+</html>

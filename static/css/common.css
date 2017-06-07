@@ -1,0 +1,307 @@
+/*
+ * 共同样式
+ */
+body{
+	color: #333333;
+}
+li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.content-center{
+	width:1000px;
+	margin:0 auto;
+}
+
+
+/* 右侧边栏 nav*/
+.sidebox{
+	position: fixed;
+	left: 50%;
+	right: auto;
+	bottom: 50px;
+	margin-left: 520px;
+	width: 60px;
+	z-index: 99;
+}
+.sidebox .toolbar{
+	width: 60px;
+}
+.sidebox .toolbar li{
+	background: #008ee1 none repeat scroll 0 0;
+	border-bottom: 1px solid #fff;
+	width: 60px;
+	height: 59px;
+	padding: 0;
+}
+.sidebox .toolbar li a{
+	color: #FFFFFF;
+	display: block;
+	height: 59px;
+	line-height: 59px;
+	text-align: center;
+	position: relative;
+}
+.sidebox .toolbar .toolbar-text{
+	color: #FFFFFF;
+	cursor: pointer;
+	font: 400 14px/20px "Microsoft YaHei","微软雅黑";
+	position: absolute;
+	left: 0;
+	margin: 8px 0 0 17px;
+	display: none;
+}
+.toolbar .toolbar-icon{
+	background: rgba(0, 0, 0, 0) url(../../static/img/toolBarDown-bg.png) no-repeat scroll 0 0;
+	display: block;
+	position: absolute;
+	width: 24px;
+	height: 22px;
+	left: 50%;
+	top: 50%;
+	overflow: hidden;
+	margin: -11px 0 0 -12px;
+	text-indent: -999em;
+}
+.toolbar .toolbar-home-icon{
+	background-position: 0 0;
+}
+.toolbar .toolbar-comment-icon{
+	background-position: -30px 0;
+}
+.toolbar .toolbar-top-icon{
+	background-position: -90px 0;
+    height: 13px;
+    margin-top: -6px;
+}
+.toolbar .marsk{
+	background: #fff none repeat scroll 0 0;
+    position: absolute;
+    width: 60px;
+    height: 59px;
+    left: 0;
+    top: 0;
+    opacity: 0.8;
+    z-index: 102;
+}
+.toolbar li.hover .toolbar-icon, .toolbar li.hover .marsk{
+	display: none;
+}
+.toolbar li.hover .toolbar-text{
+	display: block;
+}
+
+/* 我要评论 开始 */
+.detail-right{
+	position: relative;
+	float: right;
+	width: 320px;
+	padding-top:25px;
+}
+.comment-mod{
+	/*position: fixed;*/
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+}
+.comment-hd{
+	height: 45px;
+	line-height: 44px;
+}
+.comment-hd h2{
+	height: 44px;
+	overflow: hidden;
+	float: left;
+	padding: 0;
+	font: 20px/44px "microsoft yahei";
+	color: #008ee1;
+}
+.comment-hd span{
+	float: right;
+	padding: 0 0 0 8px;
+	margin-right: 13px;
+}
+.comment-hd .comment-num{
+	padding: 0 5px;
+	font-size: 24px;
+	font-family: georgia;
+	color: #f33;
+}
+.comment-bd{
+	padding: 6px 10px;
+	border: 1px solid #008ee1;
+}
+.comment-bd textarea{
+	display: block;
+	width: 100%;
+	height: 80px;
+	resize: none;
+	border: 0 none;
+	font-size: 14px;
+	line-height: 22px;
+	color: #333333;
+	overflow-y: auto;
+	vertical-align: middle;
+	outline: 0 none;
+	font-family: "microsoft yahei",simsun;
+}
+.submit-btn{
+	padding: 5px 0 0;
+	line-height: 26px;
+}
+.faces-btn{
+	background: url(../../static/img/face-ico.png) no-repeat;
+	display: block;
+	padding: 0 15px 0 25px;
+	margin: 5px 0 0;
+	float: left;
+	color: #666666;
+	line-height: 20px;
+}
+.faces-btn:hover{
+	background-position: 0 -40px;
+	color: #008EE1;
+	text-decoration: none;
+}
+.submit-btn input{
+	float: right;
+	width: 90px;
+	height: 30px;
+	background-color: #008EE1;
+	border: 0 none;
+	font: 14px/30px "microsoft yahei";
+	color: #FFFFFF;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.face-main-box{
+	width: 360px;
+	padding: 4px;
+	background: #dbdbdb;
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 195px;
+	z-index: 999;
+}
+.prompt{
+	padding: 0;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+}
+.prompt-hd{
+	position: relative;
+	height: 34px;
+	padding: 0 0 0 15px;
+	line-height: 34px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.prompt-hd h3{
+	font: bold 14px/34px "microsoft yahei",arial,simsun;
+	color: #444;
+}
+.prompt-hd .close{
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	overflow: hidden;
+	top: 8px;
+	right: 12px;
+	background: url(../../static/img/close.png) no-repeat 0 1px;
+	cursor: pointer;
+	text-indent: -999em;
+}
+.prompt-hd .close:hover{
+	background-position: 0 -19px;
+}
+.add-face{
+	height: 216px;
+	background: #fefefe;
+	overflow: auto;
+	padding: 0;
+	margin-top: 5px;
+}
+.add-face ul{
+	width: 340px;
+	margin: 0 auto;
+	background: transparent;
+}
+.add-face ul li{
+	border: 1px solid #FFFFFF;
+	float: left;
+	padding: 4px 4px 0;
+	text-align: center;
+	color: #999;
+}
+.add-face ul li img{
+	display: block;
+	cursor: pointer;
+	border: 0 none;
+}
+
+.comment-list{
+	margin: 28px 0 0 0;
+}
+.comment-item{
+	padding: 12px 0 10px;
+	border-top: 1px solid #ececec;
+}
+.comment-cont{
+	
+}
+.comment-bar{
+	height: 20px;
+	line-height: 20px;
+	padding: 3px 0 6px;
+	color: #1f4f88;
+}
+.comment-bar .published-time{
+	float: right;
+	margin-left: 10px;
+	color: #999999;
+	line-height: 18px;
+}
+.comment-bar .floor{
+	float: left;
+}
+.comment-content{
+	font-size: 14px;
+	overflow: hidden;
+	word-wrap: break-word;
+	white-space: normal;
+	word-break: break-all;
+}
+.comment-vote{
+	margin-top: 7px;
+	text-align: right;
+	height: 18px;
+}
+.comment-vote a{
+	position: relative;
+	height: 18px;
+	line-height: 18px;
+	margin-right: 10px;
+	color: #666666;
+}
+.comment-vote .ok-btn{
+	padding: 0 0 0 17px;
+	background: url(../../static/img/hottestComment-bg.png) no-repeat 0 -100px;
+}
+.comment-vote .ok-btn:hover{
+	background-position: 0 -70px;
+	text-decoration: none;
+}
+.comment-vote .reply-btn{
+	padding: 0 0 0 21px;
+	background: url(../../static/img/hottestComment-bg.png) no-repeat 0 -127px;
+}
+.comment-vote .reply-btn:hover{
+	background-position: 0 -154px;
+}
+.comment-list .comment-item .comment-content span a{
+	color: blue;
+}
+/* 我要评论 结束 */

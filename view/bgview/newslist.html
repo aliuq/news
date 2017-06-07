@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css"/>
+		<script src="../../static/script/lib/jquery.js"></script>
+		<title>咨讯列表</title>
+		<style>
+			.page-container{
+				padding: 20px;
+			}
+			.hd{
+				background: #f5fafe;
+				border: 1px solid #EEEEEE;
+				padding: 5px;
+				height: 30px;
+			}
+			.hd .l{
+				float: left;
+				margin-left: 5px;
+			}
+			.hd .l a{
+				line-height: 21px;
+				color: #FFFFFF;
+				text-decoration: none;
+				background: #5a98de;
+				border-color: #5a98de;
+				display: inline-block;
+				box-sizing: border-box;
+				text-align: center;
+				font-weight: 400;
+				border-radius: 4px;
+				padding: 4px 12px;
+			}
+			.hd .l a:hover{
+				background: #0a6999;
+				border-color: #0a6999;
+			}
+			.hd .r{
+				float: right;
+				line-height: 30px;
+				margin-right: 10px;
+			}
+			.bd select{
+				width: 50px;
+				border: 1px solid #ddd;
+				box-sizing: border-box;
+				cursor: pointer;
+			}
+			.bd span.sespan{
+				display: inline-block;
+				padding: 20px 10px;
+				z-index: 2;
+				width: 49%;
+				text-align: left;
+				box-sizing: border-box;
+			}
+			.bd span.pager{
+				display: inline-block;
+				width: 50%;
+				box-sizing: border-box;
+				text-align: right;
+				padding: 20px 10px;
+				z-index: 2;
+			}
+			.bd span.pager i{
+				cursor: pointer;
+			}
+			.bd span.pager .prev{
+				padding-right: 5px;
+			}
+			.bd span.pager .next{
+				padding-left: 5px;
+			}
+			.bd table{
+				border-bottom: 0;
+				border-collapse: separate;
+				border-spacing: 0;
+			    clear: both;
+			    border: 1px solid #ddd;
+		        border-left: 0;
+		        width: 100%;
+			}
+			.bd tr{
+				text-align: center;
+			}
+			.bd th{
+				background-color: #f5fafe;
+				font-weight: bold;
+			}
+			.bd th, .bd td{
+				padding: 8px;
+				line-height: 20px;
+			    word-break: break-all;
+			    border-left: 1px solid #ddd;
+			    border-bottom: 1px solid #ddd;
+			}
+			.bd table .handle i{
+				cursor: pointer;
+			}
+			.bd table .handle i:hover{
+				color: #06c;
+			}
+			.bd thead th{
+				position: relative;
+			}
+			.bd thead i{
+				position: absolute;
+				right: 10px;
+				cursor: pointer;
+				bottom: 9px;
+			}
+			
+			.page a{
+				text-decoration: none;
+			}
+			.page .curr{
+				text-align: center;
+			}
+			.page .pagebar{
+				font-size: 14px;
+				font-family: arial;
+				line-height: 34px;
+				text-align: right;
+				padding-top: 30px;
+			}
+			.pagebar .pagenext, .pagebar .pageprev, .pagebar .curr{
+				display: inline-block;
+				border: 1px solid #e6e6e6;
+				padding: 0 7px;
+				height: 34px;
+				min-width: 20px;
+				white-space: nowrap;
+				margin: 0 3px 0 2px;
+				vertical-align: top;
+			}
+			.pagebar .curr, .pagebar a:hover{
+				font-family: arial;
+				background: #4595e6;
+				color: #FFFFFF;
+				border-color: #4595e6;
+				text-decoration: none;
+			}
+			.pagebar .pagenext, .pagebar .pageprev{
+				padding: 0 24px 0 24px;
+				color: #333333;
+				display: inline-block;
+				border: 1px solid #e6e6e6;
+				height: 34px;
+				min-width: 20px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="page-container" id="newlist">
+			<div class="hd">
+				<span class="l">
+					<a class="reload" href="javascript:;" title="刷新">
+						<i class="fa fa-refresh"></i>
+					</a>
+				</span>
+				<span class="r">
+					共有数据 : <strong>{{ len }}</strong>条
+				</span>
+			</div>
+			<div class="bd">
+				<div class="line">
+					<span class="sespan">
+						显示
+						<select class="userlimit">
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="50">50</option>
+						</select>
+						条
+					</span>
+					<span class="pager">
+						<i @click="prev()" class="fa fa-angle-left prev"></i> 
+						<span><b>{{ pageNum }}</b>/<b>{{ NLen }}</b></span> 
+						<i @click="next()" class="fa fa-angle-right next"></i>
+					</span>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th class="id" style="width: 10%;">
+								id
+								<i @click="sort()" class="fa {{ cls1 }}"></i>
+							</th>
+							<th style="width: 40%;">标题</th>
+							<th style="width: 20%;">作者</th>
+							<th style="width: 20%;">
+								发表时间
+								<i @click="time()" class="fa {{ cls2 }}"></i>
+							</th>
+							<th style="width: 10%;">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="( index, list ) in filterlists">
+							<td>{{ list.id }}</td>
+							<td>{{ list.title }}</td>
+							<td>{{ list.authors }}</td>
+							<td>{{ list.time }}</td>
+							<td class="handle"><i class="fa fa-trash-o"></i></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="page">
+					<div class="pagebar">
+						<a @click="prev()" class="pageprev" href="javascript:;">&lt;上一页</a>
+						<span class="curr">{{ pageNum }}</span>
+						<a @click="next()" class="pagenext" href="javascript:;">下一页&gt;</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../static/script/lib/vue.js"></script>
+	<script src="../../static/script/bgscript/welcome.js"></script>
+	<script>
+		$(function(){
+			var vue = new Vue({
+				el: '#newlist',
+				data: {
+					lists: [],
+					len: 0,
+					limit: 10,
+					cls1: 'fa-sort-down',
+					cls2: 'fa-sort-down',
+					pageNum: 1,
+					limitNumS: 0,
+					limitNumE: 10
+				},
+				computed: {
+					filterlists: function(){
+						return this.lists.slice(this.limitNumS , this.limitNumE);
+					},
+					NLen: function(){
+						return Math.ceil(this.len/this.limit);
+					}
+				},
+				methods: {
+					prev: function(){
+						if( this.limitNumS >= this.limit ){
+							this.pageNum--;
+							this.limitNumS -= this.limit;
+							this.limitNumE -= this.limit;
+						}
+					},
+					next: function(){
+						if( this.limitNumE <= this.len ){
+							this.pageNum++
+							this.limitNumS += this.limit;
+							this.limitNumE += this.limit;
+						}
+					},
+					sort: function(){
+						if( this.cls1 == 'fa-sort-down' ){
+							this.cls1 = 'fa-sort-up';
+							this.lists = this.lists.sort(function(a,b){
+								return b.id - a.id;
+							});
+						}else{
+							this.cls1 = 'fa-sort-down';
+							this.lists = this.lists.sort(function(a,b){
+								return a.id - b.id;
+							});
+						}
+					},
+					time: function(){
+						if( this.cls2 == 'fa-sort-down' ){
+							this.cls2 = 'fa-sort-up';
+							this.lists = this.lists.sort(function(a, b){
+								return Date.parse( a.time ) - Date.parse ( b.time );
+							});
+						}else{
+							this.cls2 = 'fa-sort-down';
+							this.lists = this.lists.sort(function(a, b){
+								return Date.parse( b.time ) - Date.parse ( a.time );
+							});
+						}
+					}
+				}
+			})
+			
+			$('.reload').click(function(){
+//				ReSet();
+				location.replace(location.href);
+			})
+			
+			getNewList();
+			function getNewList(){
+				$.ajax({
+					type:"get",
+					url:"/getnewlist",
+					data: '',
+					dataType: 'json',
+					success: function(d){
+						vue.lists = d.data;
+						vue.len = d.data.length;
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});
+			}
+			
+			function ReSet(){
+				$.ajax({
+					type:"get",
+					url:"/reset",
+					data:'',
+					dataType:'json',
+					success: function(d){
+						console.log(d);
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});
+			}
+			
+			$('.userlimit').change(function(){
+				vue.pageNum = 1;
+				vue.limitNumS = 0;
+				vue.limit = parseInt( $(this).val() );
+				vue.limitNumE = parseInt ( $(this).val() );
+			})
+			
+			$('.bd tbody').click(function(e){
+				if( $( e.target ).parent().attr('class') == 'handle' ){
+					var title = $(e.target).parent().parent().children().eq(1).text().trim();
+					$.ajax({
+						type:"post",
+						url:"/deleteNews",
+						data: {
+							title: title,
+						},
+						dataType: 'json',
+						success: function(d){
+							if( d.msg == 1 ){
+								alert("删除成功！")
+								window.location.replace(window.location.href);
+							}
+						},
+						error: function(err){
+							console.log(err);
+						}
+					});
+				}
+			})
+		})
+	</script>
+</html>

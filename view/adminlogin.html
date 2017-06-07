@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理登录</title>
+		<link rel="shortcut icon" href="../static/img/icon_16X16.ico" type="image/x-icon" />
+		<script src="../static/script/lib/jquery.js"></script>
+		<style>
+			body{
+				background: #0073A2;
+				margin: 0;
+				padding: 0;
+			}
+			.bglogin{
+				margin: 0 auto;
+				width: 542px;
+				height: 400px;
+				color: #FFFFFF;
+				font-size: 14px;
+				margin-top: 150px;
+			}
+			.bglogo{
+				background: url("../static/img/bglogin.gif");
+				height: 104px;
+				margin-bottom: 25px;
+			}
+			
+			.bglogin form{
+				width: 300px;
+				margin: 0 auto;
+			}
+			.bglogin form span{
+				box-sizing: border-box;
+				display: inline-block;
+				padding-bottom: 20px;
+			}
+			.bglogin form span.l{
+				width: 70px;
+				text-align: right;
+			}
+			.bglogin form span.r{
+				width: 230px;
+			}
+			.bglogin form span.r input{
+				width: 220px;
+				padding: 3px 5px;
+			}
+			label.clearPar{
+				position: relative;
+			}
+			label.clearPar .clear{
+				position: absolute;
+				right: 0;
+				top: 27px;
+				cursor: pointer;
+				font-size: 10px;
+			}
+			
+			.bglogin .button{
+				padding-top: 20px;
+				text-align: center;
+				height: 30px;
+				width: 69px;
+				line-height: 30px;
+				margin: 0 auto;
+			}
+			.bglogin .button a{
+				display: inline-block;
+				color: #FFFFFF;
+				width: 100%;
+				background: #0381cf;
+				text-decoration: none;
+				border-radius: 4px;
+			}
+			.bglogin .button a:hover{
+				background: #006bad;	
+				color: #FCFCFC;
+			}
+			
+			.bglogin .codePar span.r input{
+				box-sizing: border-box;
+				width: 140px;
+				height: 30px;
+			}
+			#code{
+				margin-left: 10px;
+				width:80px;
+				font-size:20px;
+				font-family:Arial; 
+				font-style:italic; 
+				font-weight:bold; 
+				border:0; 
+				letter-spacing:2px; 
+				color:blue; 
+				vertical-align: bottom;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bglogin">
+			<div class="bglogo"></div>
+			<div>
+				<form name="admin">
+					<label for="adminname">
+						<span class="l">用户名：</span><span class="r"><input autocomplete="off" maxlength="20" size="20" class="adminname" type="text" id="adminname" ></span>
+					</label>
+					<label for="adminpass" class="clearPar">
+						<span class="l">密码 ：</span><span class="r"><input autocomplete="off" size="20" maxlength="20" type="password" class="adminpass" id="adminpass"></span>
+						<span class="clear">清空</span>
+					</label>
+					<br />
+					<label for="_code" class="codePar">
+						<span class="l">验证码：</span><span class="r"><input type="text" id="codeInp"><input type="button" id="code" /></span>
+					</label>
+					<div class="button">
+						<a href="javascript:;">登录</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			var code = $("#code");
+			$('.bglogin .clear').click(function(){
+				$('#adminname').val('');
+				$('#adminpass').val('');
+			})
+			$('.bglogin input').focus(function(){
+				$('.bglogin .tips').html('');
+			})
+			
+			$('#codeInp').keyup(function(e){
+				if( e.keyCode == 13 ){
+					AdminLogin();
+				}
+			})
+			$('.button a').click(AdminLogin);
+			function AdminLogin(){
+				var name = $('#adminname').val();
+				var pass = $('#adminpass').val();
+				var idenCode = $('#codeInp').val();
+				if( name == '' || pass == '' ){
+					alert("用户名或密码不能为空！！！");
+				}else if( idenCode == '' ){
+					alert("验证码不能为空！！！");
+					Code(code);
+				}else if( idenCode.toLocaleLowerCase() != $('#code').val().toLowerCase() ){
+					alert("验证码错误，请重新输入！");
+					$('#codeInp').val('');
+					$('#codeInp').focus();
+					Code(code);
+				}else{
+					$.ajax({
+						type:"post",
+						url:"/checkadmin",
+						data:{
+							name: name,
+							pass: pass
+						},
+						dataType: 'json',
+						success: function(data){
+							if(data.msg == 1){
+								window.location.href = "/admin";
+								localStorage.setItem( "admuser", name );
+							}else{
+								alert('用户名或密码有错误！');
+							}
+						},
+						error: function(err){
+							alert("登录失败");
+						}
+					});
+				}
+			}
+			
+			function Code(obj){
+				// 验证码组成库
+			   	var arrays=new Array( 
+			       '1','2','3','4','5','6','7','8','9','0',
+			       'a','b','c','d','e','f','g','h','i','j', 
+			       'k','l','m','n','o','p','q','r','s','t', 
+			       'u','v','w','x','y','z', 
+			       'A','B','C','D','E','F','G','H','I','J', 
+			       'K','L','M','N','O','P','Q','R','S','T', 
+			       'U','V','W','X','Y','Z'        
+		       	); 
+			    codes='';// 重新初始化验证码
+			    for(var i = 0; i<4; i++){
+				   	// 随机获取一个数组的下标
+				   	var r = parseInt(Math.random()*arrays.length);
+				   	codes += arrays[r];
+				}
+			    // 验证码添加到input里
+//		    	return codes;
+				obj.val(codes) || obj.html(codes);
+			}
+			Code(code);
+			code.click(function(){
+				Code(code);
+			})
+		})
+	</script>
+</html>

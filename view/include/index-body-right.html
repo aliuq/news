@@ -1,0 +1,183 @@
+<style>
+	.sidebar{
+		width: 300px;
+		float: right;
+	}
+	.side-rank{
+		margin-top: 13px;
+	}
+	.sidetab{
+		border: 1px solid #ebebeb;
+    	height: 34px;
+    	font-family: "Microsoft Yahei","微软雅黑";
+	}
+	.sidetab li{
+		cursor: pointer;
+    	float: left;
+    	font-size: 18px;
+    	text-align: center;
+    	color: #999;
+    	height: 34px;
+    	line-height: 34px;
+	}
+	.sidebar .current{
+		background-color: #1384d2;
+	    color: #fff;
+	    height: 36px;
+	    line-height: 36px;
+	    margin: -1px 0 0 -1px;
+	    position: relative;
+	}
+	.li-1{
+		width: 149px;
+	}
+	.li-2{
+		width: 150px;
+	}
+	
+	.changemod .side-news{
+		padding: 2px 0 0;
+	}
+	.side-news li{
+		border-bottom: 1px dotted #ccc;
+		height: 62px;
+		padding: 18px 0px 18px 118px;
+		position: relative;
+	}
+	.side-news em{
+		background-color: #e6e6e6;
+	    color: #666;
+	    font-size: 14px;
+	    height: 18px;
+	    left: 0;
+	    line-height: 18px;
+	    position: absolute;
+	    text-align: center;
+	    top: 18px;
+	    width: 18px;
+	}
+	.side-news a{
+		text-decoration: none;
+	}
+	.changemod li[class*="n1"] em{
+		background-color: #1384d2;
+		color: #fff;
+	}
+	.side-pic{
+		left: 26px;
+	    position: absolute;
+	    top: 18px;
+	}
+	.side-pic img{
+		border: 1px solid #ebebeb;
+		display: block;
+	}
+	.side-news .title{
+		font-size: 14px;
+		height: 44px;
+		line-height: 22px;
+		margin: -2px 0 0;
+		overflow: hidden;
+		position: relative;
+	}
+	.side-news .title a{
+		color: #333;
+		font-family: "Microsoft Yahei","微软雅黑";
+	}
+	.side-news .title a:hover{
+		color: #c00;
+	}
+	.side-news .foot{
+		background: url(../../static/img/share-icon.png) 0 -20px no-repeat;
+		color: #c8c9cc;
+		line-height: 20px;
+		margin: 4px 0 0;
+		padding: 0 0 0 20px;
+	}
+	.side-news .foot:hover{
+		background-position: 0 -240px;
+		color: #ff7800;
+	}
+	
+	
+	
+</style>
+<section>
+	<div class="sidebar" id="appp">
+		<div class="side-rank">
+			<ul class="sidetab">
+				<li class="li-1 current">
+					<h3>一周热文</h3>
+				</li>
+				<li class="li-2">
+					<h3>月度热文</h3>
+				</li>
+			</ul>
+			<div class="sidetab-content">
+				<div class="changemod" style="display: block;">
+					<ul class="side-news">
+						<li v-for="hottopic in hottopics" v-if="$index>=0 && $index<5">
+							<em>{{ $index+1 }}</em>
+							<a class="side-pic" target="_blank" href="/details/{{ hottopic.href_flag }}.html"><img v-bind:src="hottopic.imgsrc" width='80' height='60'/></a>
+							<div class="title"><a target="_blank" href="/details/{{ hottopic.href_flag }}.html">{{ hottopic.title }}</a></div>
+							<a href="/details/{{ hottopic.href_flag }}.html" target="_blank">
+								<div class="foot">0</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="changemod" style="display: none;">
+					<ul class="side-news">
+						<li v-for="hottopic in hottopics" v-if="$index>=5 && $index<10">
+							<em>{{ $index-4 }}</em>
+							<a class="side-pic" target="_blank" href="/details/{{ hottopic.href_flag }}.html"><img v-bind:src="hottopic.imgsrc" width='80' height='60'/></a>
+							<div class="title"><a target="_blank" href="/details/{{ hottopic.href_flag }}.html">{{ hottopic.title }}</a></div>
+							<a href="/details/{{ hottopic.href_flag }}.html" target="_blank">
+								<div class="foot">0</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sidebox">
+			<ul class="toolbar">
+				<li class="toolbar-home">
+					<a href="/">
+						<span class="toolbar-icon toolbar-home-icon"></span>
+						<span class="toolbar-text">频道<br />首页</span>
+						<i class="marsk"></i>
+					</a>
+				</li>
+				<li class="toolbar-top">
+					<a href="javascript:void(0)">
+						<span class="toolbar-icon toolbar-top-icon"></span>
+						<span class="toolbar-text">返回<br />顶部</span>
+						<i class="marsk"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<script>
+	setTimeout(function(){
+		$(function(){
+			$('.sidetab li').on('mouseover', function(){
+				var index = $(this).index();
+				$(this).addClass('current');
+				$(this).siblings().removeClass('current');
+				$('.changemod').eq(index).show();
+				$('.changemod').eq(index).siblings().hide();
+			})
+
+			var lis = $('.changemod');
+			for(var j = 0; j < lis.length; j++){
+				for(var i = 0; i < 3; i++){
+					$(lis[j]).find('li').eq(i).addClass('n1');
+				}
+			}
+		})
+	},1000)
+	
+</script>

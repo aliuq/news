@@ -1,0 +1,88 @@
+<style>
+	.header__search{
+		margin: 20px auto;
+	}
+	.header__search .title{
+		float: left;
+		font: 32px/32px arial;
+		height: 32px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		box-shadow: 2px 2px 3px #aaaaaa;
+	}
+	.search{
+		float: right;
+		height: 32px;
+		margin-top: 1px;
+	}
+	.search input{
+		border: 1px solid #ccc;
+		border-right: none;
+	    color: #333;
+	    float: left;
+	    font: 14px/20px arial;
+	    height: 20px;
+	    padding: 5px;
+	    width: 200px;
+	}
+	.search a{
+		background:#f60;
+	    color: #fff;
+	    float: left;
+	    font-family: Microsoft YaHei;
+	    height: 32px;
+	    line-height: 32px;
+	    text-align: center;
+	    width: 58px;
+	}
+	
+	.header__nav{
+		width: 100%;
+		height: 38px;
+		margin-top: 20px;
+		background-color: #0381cf;
+	}
+	.list li{
+		float: left;
+	}
+	.list li:hover{
+		background-color: #006bad;
+	}
+	.list li a{
+		color: #fff;
+		font: 16px/38px "Microsoft YaHei";
+		padding: 0 16px;
+	}
+	.list li a:hover{
+		text-decoration: none;
+	}
+</style>
+
+<section>
+	<div class="header__search content-center clearfix">
+		<div class="title">手机咨讯网</div>
+		<div class="search">
+			<input class="searInp" type="text" placeholder="请输入要查询的关键词"/>
+			<a class="searNews" target="_blank" href="javascript:;">搜索</a>
+		</div>
+	</div>
+	<div class="header__nav">
+		<ul class="list content-center">
+			<li class="default"><a href="/">新闻首页</a></li>
+			<li><a href="/mobile">手机</a></li>
+			<!--<li class="update"><a href="/update">新闻刷新</a></li>
+			<li><a href="javascript:">今日最新</a></li>
+			<li><a href="javascript:">今日最新</a></li>-->
+		</ul>
+	</div>
+	
+</section>
+<script>
+	setTimeout(function(){
+		$(function(){
+			$('.update').click(function(){
+				window.location.replace(window.location.href);
+			})
+		})
+	},1000)
+</script>
