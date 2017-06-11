@@ -180,7 +180,6 @@ exports.addComment = function(data){
 //		console.log( sqlyes )
 //		console.log( sqlno )
 		
-		mysql.InitId('comments');
 	}
 }
 
@@ -427,7 +426,6 @@ exports.moAddComment = function(data){
 //		console.log( sqlyes )
 //		console.log( sqlno )
 		
-		mysql.InitId('comments');
 	}
 }
 
