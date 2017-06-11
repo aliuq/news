@@ -16,7 +16,7 @@ app.use(koa_static({
     rootPath: '/static/',
     maxage: 0
 }))
-app.use(body());
+app.use(body()); 
 
 // 文章列表页
 app.use( controller.get( '/', function *(){
