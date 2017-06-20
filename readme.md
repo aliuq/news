@@ -9,4 +9,4 @@ Koa，Jquery，Vue，MySql
 如果出现app.use() requires a generator function错误，请安装koa-body@1。npm install koa-body@1。
 
 ## 联系方式
-如果有其他问题，欢迎骚扰，vx:liuqian19960219
+如果有其他问题，欢迎联系：1095672504@qq.com
