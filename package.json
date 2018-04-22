@@ -4,15 +4,15 @@
   "description": "Mobile information",
   "main": "app.js",
   "dependencies": {
-    "co-views": "^2.1.0",
     "auto-reload": "^0.0.2",
-    "koa": "^1.3.0",
+    "co-views": "^2.1.0",
     "ejs": "^2.5.6",
-	"mysql": "^2.13.0",
+    "koa": "^1.3.0",
+    "koa-body": "^1.6.0",
     "koa-route": "^2.4.2",
-    "koa-views": "^4.1.0",
     "koa-static-server": "^0.1.8",
-	"koa-body": "^2.1.0",
+    "koa-views": "^4.1.0",
+    "mysql": "^2.13.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {},
@@ -22,4 +22,3 @@
   "author": "linka",
   "license": "ISC"
 }
-

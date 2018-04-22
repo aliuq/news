@@ -2,17 +2,19 @@
  * 	连接数据库
  * 	操作数据库
  */
-var mysql  = require('mysql');  
+var mysql = require('mysql');  
  
 var option = {
-  host     : 'localhost',
+  host     : '192.168.0.103',
   user     : 'root',
-  password : 'liuqian123456',
-  database : 'test',
+  password : 'root',
+  port	   : '3306',
+  database : 'graduation',
   multipleStatements:true
 };
 
 var pool  = mysql.createPool(option);
+
 
 var content;
 exports.queryRe = function(sql){

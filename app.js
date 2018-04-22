@@ -11,6 +11,9 @@ var render = views('./view', {
     map: {html : 'ejs'}
 });
 var koa_static = require('koa-static-server');
+
+const port = 3000;
+
 app.use(koa_static({
     rootDir: './static/',
     rootPath: '/static/',
@@ -361,6 +364,6 @@ app.use( controller.get('/resetUser', function*(){
 	this.body = yield service.resetUser();
 }))
 
-app.listen(3030);
-console.log('Koa server is started!');
+app.listen(port);
+console.log('Koa server is started in ' + port);
 
