@@ -5,14 +5,13 @@ var mysql = require('./service/MySql');
 var qs = require('querystring');
 var app = koa();
 var service = require('./service/ServiceInit');
+var port = require('./service/config').port
 
 var views = require('co-views');
 var render = views('./view', {
     map: {html : 'ejs'}
 });
 var koa_static = require('koa-static-server');
-
-const port = 3000;
 
 app.use(koa_static({
     rootDir: './static/',
@@ -365,5 +364,5 @@ app.use( controller.get('/resetUser', function*(){
 }))
 
 app.listen(port);
-console.log('Koa server is started in ' + port);
+console.log('Koa server is started in http://localhost:' + port);
 

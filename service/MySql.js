@@ -3,17 +3,9 @@
  * 	操作数据库
  */
 var mysql = require('mysql');  
+var config = require('./config')
  
-var option = {
-  host     : '192.168.0.103',
-  user     : 'root',
-  password : 'root',
-  port	   : '3306',
-  database : 'graduation',
-  multipleStatements:true
-};
-
-var pool  = mysql.createPool(option);
+var pool  = mysql.createPool(config.mysql);
 
 
 var content;
