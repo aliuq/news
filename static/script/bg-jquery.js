@@ -238,7 +238,7 @@ $(function(){
 	//	手动添加
 	$('.handadd').click(handAdd);
 	function handAdd(){
-		var html = '<div class="show_iframe" name="手动添加"><iframe scrolling="yes" frameborder="0" src="http://localhost:3030/handAdd"></iframe></div>'
+		var html = '<div class="show_iframe" name="手动添加"><iframe scrolling="yes" frameborder="0" src="/handAdd"></iframe></div>'
 		$('.show_iframe').hide();
 		if( $('.iframe_box .show_iframe[name=手动添加]').length == 0 ){
 			$('.iframe_box').append(html);
@@ -250,7 +250,7 @@ $(function(){
 	//	用户列表
 	$('.userlist').click(uslist);
 	function uslist(){
-		var html = '<div class="show_iframe" name="用户列表"><iframe scrolling="yes" frameborder="0" src="http://localhost:3030/userlist"></iframe></div>';
+		var html = '<div class="show_iframe" name="用户列表"><iframe scrolling="yes" frameborder="0" src="/userlist"></iframe></div>';
 		$('.show_iframe').hide();
 		if( $('.iframe_box .show_iframe[name=用户列表]').length == 0 ){
 			$('.iframe_box').append(html);
@@ -261,7 +261,7 @@ $(function(){
 	
 	//	咨讯列表
 	$('.newlist').click(function(){
-		var html = '<div class="show_iframe" name="咨讯列表"><iframe scrolling="yes" frameborder="0" src="http://localhost:3030/newslist"></iframe></div>';
+		var html = '<div class="show_iframe" name="咨讯列表"><iframe scrolling="yes" frameborder="0" src="/newslist"></iframe></div>';
 		$('.show_iframe').hide();
 		if( $('.iframe_box .show_iframe[name=咨讯列表]').length == 0 ){
 			$('.iframe_box').append(html);

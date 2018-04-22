@@ -1,12 +1,30 @@
 
-## 项目介绍
-该网站主要为用户提供手机相关资讯和手机产品配置情况，拥有新闻发布、产品展示等功能用户可以查看搜索手机相关新闻和手机配置信息，点赞评论等，管理员可以通过网页登陆后台进行咨讯管理和用户管理等各种功能操作。
+## 项目说明
+<p>网站包含新闻、手机、管理模块，有新闻发布、评论、点赞、查看手机配置、新闻和手机产品操作等功能</p>
 
-## 主要开发环境
-Koa，Jquery，Vue，MySql
+## 技术栈
+koa 1.3.0，
+vue 1.0.26，
+jquery，
+mysql
 
-## 注意事项
-如果出现app.use() requires a generator function错误，请安装koa-body@1。npm install koa-body@1。
+##数据表结构
+<p>
+数据表结构: <br>
+database/create  <br>
+数据: <br>
+admin: 管理员表；
+topics: 文章表；
+details: 文章详情表；
+mobileinfo: 手机信息表；
+params: 手机参数表；
+user: 用户表
+</p>
 
-## 联系方式
-如果有其他问题，欢迎联系：lqadm@gufeng.info
+## 使用
+<pre><code>安装依赖: npm i</code></pre>
+<pre><code>运行: npm start</code></pre>
+
+## 更多说明
+<p>如果发现有其他问题，欢迎联系：github@gufeng.info</p>
+
