@@ -9,15 +9,15 @@
 > <p>mysql</p>
 
 ## 数据表结构
-#### 数据表结构
+#### 表结构
 > database/create
 #### 数据
-> <div>admin: 管理员表</div>
-> <div>database/topics: 文章表</div>
-> <div>database/details: 文章详情表</div>
-> <div>database/mobileinfo: 手机信息表</div>
-> <div>database/params: 手机参数表</div>
-> <div>database/user: 用户表</div>
+> <p>database/admin: 管理员表</p>
+> <p>database/topics: 文章表</p>
+> <p>database/details: 文章详情表</p>
+> <p>database/mobileinfo: 手机信息表</p>
+> <p>database/params: 手机参数表</p>
+> <p>database/user: 用户表</p>
 
 ## 使用
 <pre><code>安装依赖: npm i</code></pre>
