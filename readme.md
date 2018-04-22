@@ -8,7 +8,7 @@ vue 1.0.26，
 jquery，
 mysql
 
-##数据表结构
+## 数据表结构
 <p>
 数据表结构: <br>
 database/create  <br>
